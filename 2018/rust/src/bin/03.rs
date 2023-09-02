@@ -20,7 +20,7 @@ struct Rect {
 
 #[derive(Hash, Debug, PartialEq, Eq)]
 struct Claim {
-    id: u32,
+    id: i32,
     rect: Rect,
 }
 
@@ -38,7 +38,7 @@ impl Rect {
 }
 
 #[aoc2018::main(03)]
-fn main(input: &str) -> (usize, u32) {
+fn main(input: &str) -> (usize, i32) {
     let parsed_input = parse_input(input);
     (part1(&parsed_input), part2(&parsed_input))
 }
@@ -71,7 +71,7 @@ fn parse_input(input: &str) -> Vec<Claim> {
 }
 
 fn part1(input: &Vec<Claim>) -> usize {
-    let mut coord_count = HashMap::<Point, u32>::new();
+    let mut coord_count: HashMap<Point, u32> = HashMap::<Point, u32>::new();
     for claim in input {
         for coord in claim.rect.covered_coords() {
             let count = coord_count.get(&coord).unwrap_or(&0);
@@ -82,8 +82,25 @@ fn part1(input: &Vec<Claim>) -> usize {
     coord_count.values().filter(|v| **v >= 2).count()
 }
 
-fn part2(input: &Vec<Claim>) -> u32 {
-    0
+fn part2(input: &Vec<Claim>) -> i32 {
+    let mut grid = vec![vec![0; 2000]; 2000];
+    let mut claims_map: HashMap<i32, &Claim> = input.iter().map(|c| (c.id, c)).collect();
+    for claim in input {
+        for point in claim.rect.covered_coords() {
+            let value = grid[point.y as usize][point.x as usize];
+            if value != 0 {
+                claims_map.remove(&value);
+                claims_map.remove(&claim.id);
+            }
+            grid[point.y as usize][point.x as usize] = claim.id;
+        }
+    }
+
+    if claims_map.len() != 1 {
+        panic!("More than one claim satisfies condition");
+    }
+
+    *claims_map.keys().next().unwrap()
 }
 
 #[cfg(test)]
@@ -147,6 +164,6 @@ mod tests {
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2(&parse_input(&INPUT)), 3)
+        assert_eq!(part2(&parse_input(&INPUT)), 3);
     }
 }
