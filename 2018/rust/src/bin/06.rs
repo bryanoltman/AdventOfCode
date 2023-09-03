@@ -13,7 +13,7 @@ fn manhattan_distance(a: Point, b: Point) -> u32 {
 }
 
 #[aoc2018::main(06)]
-fn main(input: &str) -> (usize, i32) {
+fn main(input: &str) -> (usize, usize) {
     let parsed_input = parse_input(input);
     (part1(&parsed_input), part2(&parsed_input))
 }
@@ -101,14 +101,27 @@ fn part1(input: &Input) -> usize {
     max_size
 }
 
-fn part2(input: &Input) -> i32 {
+fn part2(input: &Input) -> usize {
     let max_x = input.iter().map(|p| p.x).max().unwrap() + 1;
     let max_y = input.iter().map(|p| p.y).max().unwrap() + 1;
-    let mut grid = vec![vec![-1; max_x as usize]; max_y as usize];
+    let mut grid = vec![vec![0; max_x as usize]; max_y as usize];
     for y in 0..max_y {
-        for x in 0..max_x {}
+        for x in 0..max_x {
+            let current_point = Point { x, y };
+            let distance_sum: u32 = input
+                .iter()
+                .map(|p| manhattan_distance(current_point, *p))
+                .sum();
+            grid[y as usize][x as usize] = distance_sum as i32;
+        }
     }
-    0
+
+    grid.into_iter()
+        .flatten()
+        // Note: for testing, we should compare the sum against 32 instead
+        // of 10000
+        .filter(|distance_sum| *distance_sum < 10000)
+        .count()
 }
 
 #[cfg(test)]
