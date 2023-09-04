@@ -52,8 +52,52 @@ fn part1(input: &Input) -> String {
     executed_steps.iter().collect()
 }
 
+fn time_for_step(step: char) -> u32 {
+    60 + (step as u32 - 64)
+}
+
 fn part2(input: &Input) -> usize {
-    0
+    let mut passed_seconds = 0;
+    let mut incomplete_steps: HashMap<char, HashSet<char>> = input.clone();
+    let mut incomplete_keys = input.keys().cloned().collect::<BTreeSet<char>>();
+    let mut executed_steps = Vec::<char>::new();
+
+    // 4 workers, represented as a tuple of (current step, seconds remaining on step)
+    // 'a' is used as a dummy value
+    let mut workers = [('a', 0), ('a', 0), ('a', 0), ('a', 0), ('a', 0)];
+    let mut active_steps = HashSet::<char>::new();
+
+    while !incomplete_keys.is_empty() {
+        for worker in workers.iter_mut() {
+            if worker.1 == 0 {
+                if worker.0 != 'a' {
+                    executed_steps.push(worker.0);
+                    incomplete_keys.remove(&worker.0);
+                    incomplete_steps.remove(&worker.0);
+                    active_steps.remove(&worker.0);
+                }
+                let maybe_next_step = incomplete_keys.iter().find(|k| {
+                    !active_steps.contains(k)
+                        && !incomplete_steps.values().any(|set| set.contains(k))
+                });
+                if maybe_next_step.is_none() {
+                    continue;
+                }
+
+                let next_step = *maybe_next_step.unwrap();
+                active_steps.insert(next_step);
+                active_steps.insert(next_step);
+                worker.0 = next_step;
+                worker.1 = time_for_step(next_step);
+            }
+
+            worker.1 -= 1
+        }
+
+        passed_seconds += 1
+    }
+
+    passed_seconds - 1
 }
 
 #[cfg(test)]
@@ -100,7 +144,14 @@ Step F must be finished before step E can begin.";
     }
 
     #[test]
+    fn test_time_for_step() {
+        assert_eq!(time_for_step('A'), 61);
+        assert_eq!(time_for_step('B'), 62);
+        assert_eq!(time_for_step('Z'), 86);
+    }
+
+    #[test]
     fn test_part2() {
-        assert_eq!(part2(&parse_input(&INPUT)), 16);
+        assert_eq!(part2(&parse_input(&INPUT)), 15);
     }
 }
