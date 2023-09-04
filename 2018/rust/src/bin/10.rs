@@ -45,7 +45,7 @@ fn map_points(points: &Vec<Point>) -> String {
     // Put a constraint on the size of the map to avoid allocating tons of
     // memory unnecessarily. This number is arbitrary but is good enough to
     // solve part 1 with both test input and real input.
-    if width > 300 || height > 300 {
+    if width > 100 || height > 100 {
         return "".to_string();
     }
 
@@ -70,7 +70,9 @@ fn map_points(points: &Vec<Point>) -> String {
 
 fn part1(input: &Input) -> String {
     let mut points = input.clone();
+    let mut i = 0;
     loop {
+        i += 1;
         for (point, velocity) in points.iter_mut() {
             point.x += velocity.x;
             point.y += velocity.y;
@@ -78,12 +80,15 @@ fn part1(input: &Input) -> String {
         let mapped = map_points(&points.clone().into_iter().map(|(p, _v)| p).collect());
         if !mapped.is_empty() {
             // Answer is shown in stdio
+            println!("second: {}", i);
             println!("{}", mapped);
+            println!("");
         }
     }
 }
 
-fn part2(input: &Input) -> usize {
+// Not actually used, part 1 is used to solve both parts.
+fn part2(_input: &Input) -> usize {
     0
 }
 
@@ -136,10 +141,9 @@ position=<-3,  6> velocity=< 2, -1>";
         );
     }
 
-    // Part 1 is not easily testable.
-
     #[test]
-    fn test_part2() {
-        assert_eq!(part2(&parse_input(&INPUT)), 15);
+    fn test_part1() {
+        // This is just to call part1 with test data, it will never complete.
+        assert_eq!(part1(&parse_input(&INPUT)), "");
     }
 }
