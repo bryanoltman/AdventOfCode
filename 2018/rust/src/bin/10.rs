@@ -16,7 +16,7 @@ fn main(input: &str) -> (String, usize) {
 }
 
 fn parse_point_str(point_str: &str) -> Point {
-    let (x_str, y_str) = point_str.split_once(",").unwrap();
+    let (x_str, y_str) = point_str.split_once(',').unwrap();
     Point {
         x: x_str.trim().parse().unwrap(),
         y: y_str.trim().parse().unwrap(),
@@ -50,8 +50,8 @@ fn map_points(points: &Vec<Point>) -> String {
     }
 
     let mut grid = vec![vec![0; width as usize]; height as usize];
-    let x_offset = min_x * -1;
-    let y_offset = min_y * -1;
+    let x_offset = -min_x;
+    let y_offset = -min_y;
 
     for point in points {
         let y = point.y + y_offset;
@@ -82,7 +82,7 @@ fn part1(input: &Input) -> String {
             // Answer is shown in stdio
             println!("second: {}", i);
             println!("{}", mapped);
-            println!("");
+            println!();
         }
     }
 }
@@ -130,7 +130,7 @@ position=<-3,  6> velocity=< 2, -1>";
 
     #[test]
     fn parses_input() {
-        let parsed_input = parse_input(&INPUT);
+        let parsed_input = parse_input(INPUT);
         assert_eq!(
             parsed_input[0],
             (Point { x: 9, y: 1 }, Point { x: 0, y: 2 })
@@ -144,6 +144,6 @@ position=<-3,  6> velocity=< 2, -1>";
     #[test]
     fn test_part1() {
         // This is just to call part1 with test data, it will never complete.
-        assert_eq!(part1(&parse_input(&INPUT)), "");
+        assert_eq!(part1(&parse_input(INPUT)), "");
     }
 }

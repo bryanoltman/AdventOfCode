@@ -19,7 +19,7 @@ fn main(input: &str) -> (usize, usize) {
 }
 
 fn parse_line(line: &str) -> Point {
-    let (x_str, y_str) = line.split_once(",").unwrap();
+    let (x_str, y_str) = line.split_once(',').unwrap();
     Point {
         x: x_str.trim().parse().unwrap(),
         y: y_str.trim().parse().unwrap(),
@@ -27,7 +27,7 @@ fn parse_line(line: &str) -> Point {
 }
 
 fn parse_input(input: &str) -> Input {
-    input.lines().map(|l| parse_line(l)).collect()
+    input.lines().map(parse_line).collect()
 }
 
 fn part1(input: &Input) -> usize {
@@ -137,7 +137,7 @@ mod tests {
 
     #[test]
     fn parses_input() {
-        let parsed = parse_input(&INPUT);
+        let parsed = parse_input(INPUT);
         assert_eq!(parsed.len(), 6);
         assert_eq!(parsed[0], Point { x: 1, y: 1 });
         assert_eq!(parsed[1], Point { x: 1, y: 6 });
@@ -169,11 +169,11 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        assert_eq!(part1(&parse_input(&INPUT)), 17);
+        assert_eq!(part1(&parse_input(INPUT)), 17);
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2(&parse_input(&INPUT)), 16);
+        assert_eq!(part2(&parse_input(INPUT)), 16);
     }
 }

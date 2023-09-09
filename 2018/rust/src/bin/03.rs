@@ -44,10 +44,10 @@ fn main(input: &str) -> (usize, i32) {
 }
 
 fn parse_line(line: &str) -> Claim {
-    let (id_input, coords) = line.split_once("@").unwrap();
-    let (origin_str, size_str) = coords.split_once(":").unwrap();
-    let (x_str, y_str) = origin_str.split_once(",").unwrap();
-    let (width_str, height_str) = size_str.split_once("x").unwrap();
+    let (id_input, coords) = line.split_once('@').unwrap();
+    let (origin_str, size_str) = coords.split_once(':').unwrap();
+    let (x_str, y_str) = origin_str.split_once(',').unwrap();
+    let (width_str, height_str) = size_str.split_once('x').unwrap();
     let mut id_str = id_input.to_string();
     id_str.remove(0);
 
@@ -67,7 +67,7 @@ fn parse_line(line: &str) -> Claim {
 }
 
 fn parse_input(input: &str) -> Vec<Claim> {
-    input.lines().map(|l| parse_line(l)).collect()
+    input.lines().map(parse_line).collect()
 }
 
 fn part1(input: &Vec<Claim>) -> usize {
@@ -159,11 +159,11 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        assert_eq!(part1(&parse_input(&INPUT)), 4);
+        assert_eq!(part1(&parse_input(INPUT)), 4);
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2(&parse_input(&INPUT)), 3);
+        assert_eq!(part2(&parse_input(INPUT)), 3);
     }
 }

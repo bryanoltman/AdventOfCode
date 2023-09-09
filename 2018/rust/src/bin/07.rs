@@ -39,11 +39,10 @@ fn part1(input: &Input) -> String {
 
     let mut executed_steps = Vec::<char>::new();
     while !incomplete_keys.is_empty() {
-        let next_step = incomplete_keys
+        let next_step = *incomplete_keys
             .iter()
             .find(|k| !incomplete_steps.values().any(|set| set.contains(k)))
-            .unwrap()
-            .clone();
+            .unwrap();
         executed_steps.push(next_step);
         incomplete_steps.remove(&next_step);
         incomplete_keys.remove(&next_step);
@@ -114,7 +113,7 @@ Step F must be finished before step E can begin.";
 
     #[test]
     fn parses_input() {
-        let parsed_input = parse_input(&INPUT);
+        let parsed_input = parse_input(INPUT);
         assert_eq!(
             parsed_input[&'C'],
             HashSet::from_iter(vec!['A', 'F'].into_iter())
@@ -140,7 +139,7 @@ Step F must be finished before step E can begin.";
 
     #[test]
     fn test_part1() {
-        assert_eq!(part1(&parse_input(&INPUT)), "CABDFE");
+        assert_eq!(part1(&parse_input(INPUT)), "CABDFE");
     }
 
     #[test]
@@ -152,6 +151,6 @@ Step F must be finished before step E can begin.";
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2(&parse_input(&INPUT)), 15);
+        assert_eq!(part2(&parse_input(INPUT)), 15);
     }
 }

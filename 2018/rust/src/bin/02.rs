@@ -37,7 +37,7 @@ fn diff_positions(a: &str, b: &str) -> Vec<usize> {
             positions.push(i);
         }
     }
-    return positions;
+    positions
 }
 
 fn part2(input: &str) -> String {

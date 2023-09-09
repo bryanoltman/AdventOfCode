@@ -5,7 +5,7 @@ type Input = str;
 #[aoc2018::main(05)]
 fn main(input: &str) -> (u32, u32) {
     let parsed_input = parse_input(input);
-    (part1(&parsed_input), part2(&parsed_input))
+    (part1(parsed_input), part2(parsed_input))
 }
 
 fn parse_input(input: &str) -> &Input {
@@ -78,11 +78,11 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        assert_eq!(part1(&parse_input(&INPUT)), 10);
+        assert_eq!(part1(parse_input(INPUT)), 10);
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2(&parse_input(&INPUT)), 4);
+        assert_eq!(part2(parse_input(INPUT)), 4);
     }
 }
