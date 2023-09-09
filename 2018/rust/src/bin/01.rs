@@ -14,11 +14,11 @@ fn parse_input(input: &str) -> Vec<i32> {
         .collect()
 }
 
-fn part1(input: &Vec<i32>) -> i32 {
+fn part1(input: &[i32]) -> i32 {
     input.iter().sum()
 }
 
-fn part2(input: &Vec<i32>) -> i32 {
+fn part2(input: &[i32]) -> i32 {
     let mut seen_freqs = HashSet::<i32>::new();
     let mut freq = 0;
     for freq_change in input.iter().cycle() {
