@@ -9,7 +9,7 @@ struct Input {
 }
 
 #[aoc2018::main(09)]
-fn main(input: &str) -> (u32, u32) {
+fn main(input: &str) -> (usize, usize) {
     let parsed_input = parse_input(input);
     (part1(&parsed_input), part2(&parsed_input))
 }
@@ -25,36 +25,35 @@ fn parse_input(input: &str) -> Input {
     }
 }
 
-fn get_high_score(input: &Input) -> u32 {
+fn get_high_score(input: &Input) -> usize {
     let mut circle = VecDeque::with_capacity(input.last_marble_value);
     circle.push_back(0);
     let mut scores = vec![0; input.num_players];
 
     for i in 1..=input.last_marble_value {
         if i % 23 == 0 {
-            scores[i % input.num_players] += i as u32;
             for _ in 0..7 {
                 let back = circle.pop_back().unwrap();
                 circle.push_front(back);
             }
-            scores[i % input.num_players] += circle.pop_front().unwrap();
+            scores[i % input.num_players] += circle.pop_front().unwrap() + i;
         } else {
             for _ in 0..2 {
                 let front = circle.pop_front().unwrap();
                 circle.push_back(front);
             }
-            circle.push_front(i as u32);
+            circle.push_front(i);
         }
     }
 
     *scores.iter().max().unwrap()
 }
 
-fn part1(input: &Input) -> u32 {
+fn part1(input: &Input) -> usize {
     get_high_score(input)
 }
 
-fn part2(input: &Input) -> u32 {
+fn part2(input: &Input) -> usize {
     let updated_input = Input {
         num_players: input.num_players,
         last_marble_value: input.last_marble_value * 100,
