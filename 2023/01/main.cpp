@@ -6,9 +6,14 @@
 //
 
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream> //std::stringstream
+
+#include "day01.hpp"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+  auto input = ReadInput("/Users/bryanoltman/Documents/AdventOfCode/2023/inputs/01.txt");
+  std::cout << "Part 1: " << PartOne(input) << "\n";
+  return 0;
 }
