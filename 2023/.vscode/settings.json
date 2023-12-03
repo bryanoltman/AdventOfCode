@@ -2,5 +2,10 @@
     "files.associations": {
         "vector": "cpp",
         "__config": "cpp"
-    }
+    },
+    "clangd.arguments": [
+        "--header-insertion=never",
+        "--compile-commands-dir=${workspaceFolder}/",
+        "--query-driver=**",
+    ]
 }
