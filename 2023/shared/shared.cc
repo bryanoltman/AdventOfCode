@@ -68,29 +68,35 @@ CharMatrix::CharMatrix(vector<string> lines)
 vector<pair<int, int>> CharMatrix::NeighborPoints(int x, int y, bool include_diagonal)
 {
     vector<pair<int, int>> neighbors;
-    if (x - 1 >= 0 && y - 1 >= 0 && include_diagonal) {
-        neighbors.push_back(make_pair(x - 1, y - 1));
+
+    vector<pair<int, int>> possible_neighbor_points;
+    if (include_diagonal) {
+        possible_neighbor_points = {
+            make_pair(x - 1, y - 1),
+            make_pair(x, y - 1),
+            make_pair(x + 1, y - 1),
+
+            make_pair(x - 1, y),
+            make_pair(x + 1, y),
+
+            make_pair(x - 1, y + 1),
+            make_pair(x, y + 1),
+            make_pair(x + 1, y + 1),
+        };
+    } else {
+        possible_neighbor_points = {
+            make_pair(x, y - 1),
+            make_pair(x - 1, y),
+            make_pair(x + 1, y),
+            make_pair(x, y + 1),
+        };
     }
-    if (x - 1 >= 0) {
-        neighbors.push_back(make_pair(x - 1, y));
-    }
-    if (x - 1 >= 0 && y + 1 < Height() && include_diagonal) {
-        neighbors.push_back(make_pair(x - 1, y + 1));
-    }
-    if (y - 1 >= 0) {
-        neighbors.push_back(make_pair(x, y - 1));
-    }
-    if (y + 1 < Height()) {
-        neighbors.push_back(make_pair(x, y + 1));
-    }
-    if (x + 1 < Width() && y - 1 >= 0 && include_diagonal) {
-        neighbors.push_back(make_pair(x + 1, y - 1));
-    }
-    if (x + 1 < Width()) {
-        neighbors.push_back(make_pair(x + 1, y));
-    }
-    if (x + 1 < Width() && y + 1 < Height() && include_diagonal) {
-        neighbors.push_back(make_pair(x + 1, y + 1));
+
+    for (auto &point : possible_neighbor_points) {
+        if (point.first >= 0 && point.first < Width() && point.second >= 0
+            && point.second < Height()) {
+            neighbors.push_back(point);
+        }
     }
 
     return neighbors;
