@@ -1,4 +1,9 @@
+#include <fstream>
+#include <iostream>
+
 #include "shared.h"
+
+using namespace std;
 
 vector<string> ReadLines(std::string file_path)
 {
@@ -17,6 +22,36 @@ vector<string> ReadLines(std::string file_path)
     file.close();
 
     return lines;
+}
+
+string TrimString(const string &str)
+{
+    // From https://stackoverflow.com/a/1798170
+    const auto strBegin = str.find_first_not_of(' ');
+    if (strBegin == std::string::npos) {
+        return ""; // no content
+    }
+
+    const auto strEnd = str.find_last_not_of(' ');
+    const auto strRange = strEnd - strBegin + 1;
+
+    return str.substr(strBegin, strRange);
+}
+
+vector<string> SplitString(const string &str, char delimiter)
+{
+    // From https://stackoverflow.com/a/73446843
+    std::vector<std::string> tokens;
+    std::size_t start = 0, end = 0;
+    while ((end = str.find(delimiter, start)) != std::string::npos) {
+        auto substr = str.substr(start, end - start);
+        if (!substr.empty()) {
+            tokens.push_back(substr);
+        }
+        start = end + 1;
+    }
+    tokens.push_back(str.substr(start));
+    return tokens;
 }
 
 CharMatrix::CharMatrix(vector<string> lines)

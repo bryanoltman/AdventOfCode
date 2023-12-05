@@ -1,11 +1,13 @@
-#include <fstream>
-#include <iostream>
 #include <string>
 #include <vector>
 
 using namespace std;
 
-vector<string> ReadLines(std::string file_path);
+vector<string> ReadLines(string file_path);
+
+vector<string> SplitString(const string &str, char delimiter);
+
+string TrimString(const std::string &line);
 
 class CharMatrix {
 public:
