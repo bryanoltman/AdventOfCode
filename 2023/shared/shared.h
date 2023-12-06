@@ -1,3 +1,6 @@
+#ifndef SHARED_H
+#define SHARED_H
+
 #include <string>
 #include <vector>
 
@@ -28,3 +31,5 @@ public:
 
     void Print();
 };
+
+#endif // SHARED_H

@@ -1,8 +1,8 @@
-#include <map>
+#include <iostream>
 #include <string>
 #include <vector>
 
-#include "shared/shared.h"
+#include "01/01.h"
 
 using namespace std;
 
@@ -47,12 +47,10 @@ uint32_t PartOne(vector<string> input)
     return acc;
 }
 
-vector<pair<string, string>> letter_pairs;
-
 void SwapLetters(string &line)
 {
     for (int i = 0; i < line.length(); i++) {
-        for (auto &pair : letter_pairs) {
+        for (auto &pair : LETTER_PAIRS) {
             auto word = pair.first;
             auto letter = pair.second;
             if (line.find(word) == i) {
@@ -77,7 +75,7 @@ char last_digit(string str)
             return str[i];
         }
 
-        for (auto &pair : letter_pairs) {
+        for (auto &pair : LETTER_PAIRS) {
             auto word = pair.first;
             auto letter = pair.second;
             // cout << str << " find " << word << " at " << i << endl;
@@ -104,25 +102,4 @@ uint32_t PartTwo(vector<string> input)
     }
 
     return acc;
-}
-
-int main(int argc, char const *argv[])
-{
-    letter_pairs.push_back({ "one", "1" });
-    letter_pairs.push_back({ "two", "2" });
-    letter_pairs.push_back({ "three", "3" });
-    letter_pairs.push_back({ "four", "4" });
-    letter_pairs.push_back({ "five", "5" });
-    letter_pairs.push_back({ "six", "6" });
-    letter_pairs.push_back({ "seven", "7" });
-    letter_pairs.push_back({ "eight", "8" });
-    letter_pairs.push_back({ "nine", "9" });
-
-    // auto input = ReadLines("inputs/01.test2.txt");
-    // PartTwo(input);
-
-    auto input = ReadLines("inputs/01.txt");
-    std::cout << "Part 1: " << PartOne(input) << "\n";
-    std::cout << "Part 2: " << PartTwo(input) << "\n";
-    return 0;
 }
