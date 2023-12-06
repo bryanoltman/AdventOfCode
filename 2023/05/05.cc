@@ -139,9 +139,6 @@ size_t PartTwo(const Input &input)
                 auto source_start = map_range.source_range.start;
                 auto dest_start = map_range.dest_range.start;
 
-                // seed: 55-68
-                // map:  50-98
-
                 if (max_start < min_end) {
                     // The current seed range overlaps with this source-destination range
                     found_overlap = true;
