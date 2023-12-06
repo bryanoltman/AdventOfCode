@@ -133,31 +133,31 @@ size_t PartTwo(const Input &input)
             bool found_overlap = false;
 
             for (auto &map_range : map.ranges) {
-                auto max_start = max(start, map_range.source_range.start);
-                auto min_end = min(end, map_range.source_range.end);
+                auto overlap_start = max(start, map_range.source_range.start);
+                auto overlap_end = min(end, map_range.source_range.end);
 
                 auto source_start = map_range.source_range.start;
                 auto dest_start = map_range.dest_range.start;
 
-                if (max_start < min_end) {
+                if (overlap_start < overlap_end) {
                     // The current seed range overlaps with this source-destination range
                     found_overlap = true;
 
                     // Add the area of overlap to the next round of seed ranges
-                    auto new_range_start = max_start - source_start + dest_start;
-                    auto new_range_end = min_end - source_start + dest_start;
+                    auto new_range_start = overlap_start - source_start + dest_start;
+                    auto new_range_end = overlap_end - source_start + dest_start;
                     new_seed_ranges.push_back(Range(new_range_start, new_range_end));
 
-                    if (max_start > seed_range.start) {
+                    if (overlap_start > seed_range.start) {
                         // If we overlapped in the beginning of the range, add the seed range up
                         // until the beginning of the overlap
-                        current_seed_ranges.push_back(Range(seed_range.start, max_start));
+                        current_seed_ranges.push_back(Range(seed_range.start, overlap_start));
                     }
 
-                    if (min_end < seed_range.end) {
+                    if (overlap_end < seed_range.end) {
                         // If we overlapped at the end of the range, add the seed range from the end
                         // of the overlap to the end of the seed range.
-                        current_seed_ranges.push_back(Range(min_end, seed_range.end));
+                        current_seed_ranges.push_back(Range(overlap_end, seed_range.end));
                     }
 
                     break;
