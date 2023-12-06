@@ -144,8 +144,9 @@ size_t PartTwo(const Input &input)
                     found_overlap = true;
 
                     // Add the area of overlap to the next round of seed ranges
-                    auto new_range_start = overlap_start - source_start + dest_start;
-                    auto new_range_end = overlap_end - source_start + dest_start;
+                    auto source_dest_diff = dest_start - source_start;
+                    auto new_range_start = overlap_start + source_dest_diff;
+                    auto new_range_end = overlap_end + source_dest_diff;
                     new_seed_ranges.push_back(Range(new_range_start, new_range_end));
 
                     if (overlap_start > seed_range.start) {
