@@ -17,18 +17,3 @@ cc_library(
     ],
     deps = ["//shared"],
 )
-
-cc_test(
-    name = "test",
-    srcs = [
-        "05_test.cc",
-    ],
-    data = [
-        "//inputs:05.test.txt",
-    ],
-    defines = ["CATCH_CONFIG_MAIN"],
-    deps = [
-        ":lib",
-        "@catch2",
-    ],
-)

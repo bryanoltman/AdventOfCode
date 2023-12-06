@@ -6,11 +6,11 @@
 using namespace std;
 
 struct Range {
-    Range(size_t start, size_t length)
+    Range(size_t start, size_t end)
     {
         this->start = start;
-        this->end = start + length;
-        this->length = length;
+        this->end = end;
+        this->length = end - start;
     }
 
     size_t start;
@@ -39,6 +39,9 @@ struct Input {
     vector<SourceDestMap> maps;
 };
 
+bool RangesOverlap(const Range &a, const Range &b);
+
 Input ParseInput(const string &filename);
 
 size_t PartOne(const Input &input);
+size_t PartTwo(const Input &input);
