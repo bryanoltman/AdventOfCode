@@ -25,7 +25,7 @@ TEST_CASE("Part 1 (second test input)", TAGS) {
   REQUIRE(PartOne(input) == 6);
 }
 
-// TEST_CASE("Part 2", TAGS) {
-//   auto input = ParseInput("inputs/07.test.txt", true);
-//   REQUIRE(PartTwo(input) == 5905);
-// }
+TEST_CASE("Part 2", TAGS) {
+  auto input = ParseInput("inputs/08.test3.txt");
+  REQUIRE(PartTwo(input) == 6);
+}

@@ -56,4 +56,49 @@ size_t PartOne(Input input) {
   return num_steps;
 }
 
-size_t PartTwo(Input input) { return 0; }
+bool PartTwoIsDone(vector<string> nodes) {
+  for (auto node : nodes) {
+    if (node.back() != 'Z') {
+      return false;
+    }
+  }
+  return true;
+}
+
+size_t PartTwo(Input input) {
+  size_t num_steps = 0;
+  size_t directions_index = 0;
+  vector<string> current_nodes;
+  for (auto node_entry : input.nodes) {
+    auto node = node_entry.first;
+    if (node.back() == 'A') {
+      current_nodes.push_back(node);
+    }
+  }
+
+  while (!PartTwoIsDone(current_nodes)) {
+    char current_direction = input.directions[directions_index];
+    directions_index++;
+    if (directions_index == input.directions.length()) {
+      directions_index = 0;
+    }
+
+    vector<string> new_nodes;
+    for (auto node : current_nodes) {
+      auto node_pair = input.nodes[node];
+      if (current_direction == 'L') {
+        new_nodes.push_back(node_pair.first);
+      } else if (current_direction == 'R') {
+        new_nodes.push_back(node_pair.second);
+      } else {
+        cout << "Unknown direction found " << current_direction << endl;
+        exit(-1);
+      }
+    }
+
+    current_nodes = new_nodes;
+    num_steps++;
+  }
+
+  return num_steps;
+}
