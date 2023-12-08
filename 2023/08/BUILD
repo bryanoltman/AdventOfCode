@@ -1,5 +1,5 @@
 cc_binary(
-    name = "010",
+    name = "08",
     srcs = ["main.cc"],
     deps = [":lib"],
 )

@@ -17,12 +17,12 @@ TEST_CASE("Parses input", TAGS) {
 
 TEST_CASE("Part 1 (first test input)", TAGS) {
   auto input = ParseInput("inputs/08.test.txt");
-  REQUIRE(PartOne(input) == 0);
+  REQUIRE(PartOne(input) == 2);
 }
 
 TEST_CASE("Part 1 (second test input)", TAGS) {
   auto input = ParseInput("inputs/08.test2.txt");
-  REQUIRE(PartOne(input) == 0);
+  REQUIRE(PartOne(input) == 6);
 }
 
 // TEST_CASE("Part 2", TAGS) {

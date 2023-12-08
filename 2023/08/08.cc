@@ -29,6 +29,31 @@ Input ParseInput(const string &filename) {
   return ret;
 }
 
-size_t PartOne(Input input) { return 0; }
+size_t PartOne(Input input) {
+  size_t num_steps = 0;
+  size_t directions_index = 0;
+  string current_node = "AAA";
+  while (current_node != "ZZZ") {
+    char current_direction = input.directions[directions_index];
+    directions_index++;
+    if (directions_index == input.directions.length()) {
+      directions_index = 0;
+    }
+
+    auto node_pair = input.nodes[current_node];
+    if (current_direction == 'L') {
+      current_node = node_pair.first;
+    } else if (current_direction == 'R') {
+      current_node = node_pair.second;
+    } else {
+      cout << "Unknown direction found " << current_direction << endl;
+      exit(-1);
+    }
+
+    num_steps++;
+  }
+
+  return num_steps;
+}
 
 size_t PartTwo(Input input) { return 0; }
