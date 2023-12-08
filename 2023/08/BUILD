@@ -18,7 +18,10 @@ cc_test(
     name = "test",
     size = "small",
     srcs = ["08_test.cc"],
-    data = ["//inputs:08.test.txt"],
+    data = [
+        "//inputs:08.test.txt",
+        "//inputs:08.test2.txt",
+    ],
     defines = ["CATCH_CONFIG_MAIN"],
     deps = [
         ":lib",

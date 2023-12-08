@@ -20,10 +20,10 @@ Input ParseInput(const string &filename) {
   for (; lines_itr != lines.end(); lines_itr++) {
     smatch matches;
     regex_match(*lines_itr, matches, node_line_regex);
-    auto node = matches[1].str();
-    auto left = matches[2].str();
-    auto right = matches[3].str();
-    ret.nodes.insert(node, make_pair(left, right));
+    string node = matches[1].str();
+    string left = matches[2].str();
+    string right = matches[3].str();
+    ret.nodes[node] = make_pair(left, right);
   }
 
   return ret;
