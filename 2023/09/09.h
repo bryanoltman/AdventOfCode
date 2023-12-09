@@ -11,6 +11,8 @@ typedef vector<vector<size_t>> Input;
 
 Input ParseInput(const string &filename);
 
+vector<vector<size_t>> Derivatives(const vector<size_t> &numbers);
+size_t NextNumberInSequence(const vector<size_t> &numbers);
 size_t PartOne(Input input);
 size_t PartTwo(Input input);
 
