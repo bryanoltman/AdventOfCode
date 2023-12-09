@@ -116,7 +116,6 @@ size_t findlcm(vector<size_t> v)
 
 size_t PartTwo(Input input)
 {
-    size_t num_steps = 0;
     vector<string> current_nodes;
     for (auto node_entry : input.nodes) {
         auto node = node_entry.first;
@@ -132,6 +131,4 @@ size_t PartTwo(Input input)
     }
 
     return findlcm(cycle_sizes);
-
-    return num_steps;
 }
