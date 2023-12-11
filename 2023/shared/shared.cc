@@ -65,6 +65,8 @@ CharMatrix::CharMatrix(vector<string> lines)
     }
 }
 
+char CharMatrix::CharAt(pair<size_t, size_t> point) { return chars[point.second][point.first]; }
+
 vector<pair<int, int>> CharMatrix::NeighborPoints(int x, int y, bool include_diagonal)
 {
     vector<pair<int, int>> neighbors;

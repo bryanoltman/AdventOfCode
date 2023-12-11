@@ -18,6 +18,7 @@ public:
     vector<pair<int, int>> NeighborPoints(int x, int y, bool include_diagonal = true);
     vector<char> Neighbors(int x, int y, bool include_diagonal = true);
     vector<vector<char>> chars;
+    char CharAt(pair<size_t, size_t> point);
 
     size_t Height() { return chars.size(); }
 
