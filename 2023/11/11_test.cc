@@ -49,7 +49,7 @@ TEST_CASE("DistanceBetweenGalaxies", TAGS)
     auto empty_rows = EmptyRows(input);
     auto empty_cols = EmptyColumns(input);
 
-    REQUIRE(DistanceBetweenGalaxies(input, a, b, empty_rows, empty_cols) == 9);
+    REQUIRE(DistanceBetweenGalaxies(input, a, b, empty_rows, empty_cols, 2) == 9);
 }
 
 TEST_CASE("Part 1", TAGS)
@@ -61,8 +61,9 @@ TEST_CASE("Part 1", TAGS)
 // AoC did not give a solution for part 2 with an expansion rate of 1000000.
 // This test was used for checking the solutions provided for expansion rates
 // of 10 and 100.
-// TEST_CASE("Part 2", TAGS)
-// {
-//     auto input = ParseInput("inputs/11.test.txt");
-//     REQUIRE(PartTwo(input) == 8410);
-// }
+TEST_CASE("ComputeDistances", TAGS)
+{
+    auto input = ParseInput("inputs/11.test.txt");
+    REQUIRE(ComputeDistances(input, 10) == 1030);
+    REQUIRE(ComputeDistances(input, 100) == 8410);
+}
