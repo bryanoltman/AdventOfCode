@@ -20,9 +20,9 @@ public:
     vector<vector<char>> chars;
     char CharAt(pair<size_t, size_t> point);
 
-    size_t Height() { return chars.size(); }
+    size_t Height() const { return chars.size(); }
 
-    size_t Width()
+    size_t Width() const
     {
         if (chars.empty()) {
             return 0;
