@@ -58,8 +58,11 @@ TEST_CASE("Part 1", TAGS)
     REQUIRE(PartOne(input) == 374);
 }
 
-TEST_CASE("Part 2", TAGS)
-{
-    auto input = ParseInput("inputs/11.test.txt");
-    REQUIRE(PartTwo(input) == 0);
-}
+// AoC did not give a solution for part 2 with an expansion rate of 1000000.
+// This test was used for checking the solutions provided for expansion rates
+// of 10 and 100.
+// TEST_CASE("Part 2", TAGS)
+// {
+//     auto input = ParseInput("inputs/11.test.txt");
+//     REQUIRE(PartTwo(input) == 8410);
+// }

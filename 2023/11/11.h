@@ -15,6 +15,8 @@ Input ParseInput(const string &filename);
 vector<pair<long, long>> FindGalaxies(const Input &input);
 size_t DistanceBetweenGalaxies(const Input &input, const pair<long, long> &a,
     const pair<long, long> &b, set<long> &empty_rows, set<long> &empty_cols);
+size_t DistanceBetweenGalaxiesPart2(const Input &input, const pair<long, long> &a,
+    const pair<long, long> &b, set<long> &empty_rows, set<long> &empty_cols);
 set<long> EmptyRows(const Input &input);
 set<long> EmptyColumns(const Input &input);
 
