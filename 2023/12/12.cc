@@ -74,6 +74,20 @@ size_t NumPossibleStrings(string spring, vector<size_t> arrangement) {
   return ret;
 }
 
+SpringRecord UnfoldRecord(SpringRecord record) {
+  SpringRecord ret;
+  for (int i = 0; i < 5; i++) {
+    ret.spring_condition += record.spring_condition;
+    if (i != 4) {
+      ret.spring_condition += '?';
+    }
+    ret.arrangement.insert(ret.arrangement.end(), record.arrangement.begin(),
+                           record.arrangement.end());
+  }
+
+  return ret;
+}
+
 size_t PartOne(Input input) {
   size_t ret = 0;
   for (auto &record : input) {
@@ -84,4 +98,7 @@ size_t PartOne(Input input) {
   return ret;
 }
 
-size_t PartTwo(Input input) { return 0; }
+size_t PartTwo(Input input) {
+  size_t ret = 0;
+  return ret;
+}

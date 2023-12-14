@@ -16,6 +16,7 @@ Input ParseInput(const string &filename);
 
 bool SpringMatchesArrangement(string spring, vector<size_t> arrangement);
 size_t NumPossibleStrings(string spring, vector<size_t> arrangement);
+SpringRecord UnfoldRecord(SpringRecord record);
 
 size_t PartOne(Input input);
 size_t PartTwo(Input input);

@@ -40,6 +40,15 @@ TEST_CASE("NumPossibleStrings", TAGS) {
   REQUIRE(NumPossibleStrings("?###????????", {3, 2, 1}) == 10);
 }
 
+TEST_CASE("UnfoldRecord", TAGS) {
+  SpringRecord input = {"???.###", {1, 1, 3}};
+  auto unfolded = UnfoldRecord(input);
+  REQUIRE(unfolded.spring_condition ==
+          "???.###????.###????.###????.###????.###");
+  REQUIRE(unfolded.arrangement ==
+          (vector<size_t>){1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3});
+}
+
 TEST_CASE("Part 1", TAGS) {
   auto input = ParseInput("inputs/12.test.txt");
   REQUIRE(PartOne(input) == 21);
