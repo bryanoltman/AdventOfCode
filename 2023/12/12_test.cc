@@ -40,6 +40,20 @@ TEST_CASE("NumPossibleStrings", TAGS) {
   REQUIRE(NumPossibleStrings("?###????????", {3, 2, 1}) == 10);
 }
 
+TEST_CASE("MemoizedNumPossibleStrings", TAGS) {
+  // .###.##.#...
+  // .###.##..#..
+  // .###.##...#.
+  // .###.##....#
+  // .###..##.#..
+  // .###..##..#.
+  // .###..##...#
+  // .###...##.#.
+  // .###...##..#
+  // .###....##.#
+  REQUIRE(MemoizedNumPossibleStrings("?###????????", {3, 2, 1}) == 10);
+}
+
 TEST_CASE("UnfoldRecord", TAGS) {
   SpringRecord input = {"???.###", {1, 1, 3}};
   auto unfolded = UnfoldRecord(input);
@@ -56,5 +70,5 @@ TEST_CASE("Part 1", TAGS) {
 
 TEST_CASE("Part 2", TAGS) {
   auto input = ParseInput("inputs/12.test.txt");
-  REQUIRE(PartTwo(input) == 0);
+  REQUIRE(PartTwo(input) == 525152);
 }
