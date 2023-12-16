@@ -15,5 +15,5 @@ TEST_CASE("Part 1", TAGS)
 TEST_CASE("Part 2", TAGS)
 {
     auto input = ParseInput("inputs/14.test.txt");
-    REQUIRE(PartTwo(input) == 0);
+    REQUIRE(PartTwo(input) == 64);
 }
