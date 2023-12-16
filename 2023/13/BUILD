@@ -20,6 +20,7 @@ cc_test(
     srcs = ["13_test.cc"],
     data = [
         "//inputs:13.test.txt",
+        "//inputs:13.test2.txt",
     ],
     defines = ["CATCH_CONFIG_MAIN"],
     deps = [
