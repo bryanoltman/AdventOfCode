@@ -42,6 +42,19 @@ TEST_CASE("Hash", TAGS)
     REQUIRE(Hash("ot=7") == 231);
 }
 
+TEST_CASE("InstructionFromString", TAGS)
+{
+    auto instruction = InstructionFromString("rng=1");
+    REQUIRE(instruction.label == "rng");
+    REQUIRE(instruction.op == '=');
+    REQUIRE(instruction.power == 1);
+
+    auto instruction2 = InstructionFromString("cm-");
+    REQUIRE(instruction2.label == "cm");
+    REQUIRE(instruction2.op == '-');
+    REQUIRE(instruction2.power == 0);
+}
+
 TEST_CASE("Part 1", TAGS)
 {
     auto input = ParseInput("inputs/15.test.txt");
@@ -51,5 +64,5 @@ TEST_CASE("Part 1", TAGS)
 TEST_CASE("Part 2", TAGS)
 {
     auto input = ParseInput("inputs/15.test.txt");
-    REQUIRE(PartTwo(input) == 0);
+    REQUIRE(PartTwo(input) == 145);
 }
