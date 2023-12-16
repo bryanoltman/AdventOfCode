@@ -27,10 +27,10 @@ Input ParseInput(const string &filename)
     return ret;
 }
 
-optional<size_t> VerticalReflectionIndex(CharMatrix &matrix)
+optional<size_t> VerticalReflectionIndex(CharMatrix &matrix, size_t num_diffs)
 {
     for (size_t vert_idx = 1; vert_idx < matrix.Width(); vert_idx++) {
-        bool has_symmetry = true;
+        size_t diffs = 0;
         for (size_t y = 0; y < matrix.Height(); y++) {
             int left = vert_idx - 1;
             auto right = vert_idx;
@@ -38,19 +38,18 @@ optional<size_t> VerticalReflectionIndex(CharMatrix &matrix)
                 auto left_char = matrix.CharAt({ left, y });
                 auto right_char = matrix.CharAt({ right, y });
                 if (left_char != right_char) {
-                    has_symmetry = false;
-                    break;
+                    diffs++;
                 }
                 right++;
                 left--;
             }
 
-            if (!has_symmetry) {
+            if (diffs > num_diffs) {
                 break;
             }
         }
 
-        if (has_symmetry) {
+        if (diffs == num_diffs) {
             return vert_idx;
         }
     }
@@ -58,10 +57,10 @@ optional<size_t> VerticalReflectionIndex(CharMatrix &matrix)
     return nullopt;
 }
 
-optional<size_t> HorizontalReflectionIndex(CharMatrix &matrix)
+optional<size_t> HorizontalReflectionIndex(CharMatrix &matrix, size_t num_diffs)
 {
     for (size_t horiz_idx = 1; horiz_idx < matrix.Height(); horiz_idx++) {
-        bool has_symmetry = true;
+        size_t diffs = 0;
         for (size_t x = 0; x < matrix.Width(); x++) {
             int top = horiz_idx - 1;
             auto bottom = horiz_idx;
@@ -69,19 +68,19 @@ optional<size_t> HorizontalReflectionIndex(CharMatrix &matrix)
                 auto top_char = matrix.CharAt({ x, top });
                 auto bottom_char = matrix.CharAt({ x, bottom });
                 if (top_char != bottom_char) {
-                    has_symmetry = false;
-                    break;
+
+                    diffs++;
                 }
                 bottom++;
                 top--;
             }
 
-            if (!has_symmetry) {
+            if (diffs > num_diffs) {
                 break;
             }
         }
 
-        if (has_symmetry) {
+        if (diffs == num_diffs) {
             return horiz_idx;
         }
     }
@@ -93,12 +92,12 @@ size_t PartOne(Input input)
 {
     size_t ret = 0;
     for (auto &matrix : input) {
-        auto horizontal = HorizontalReflectionIndex(matrix);
+        auto horizontal = HorizontalReflectionIndex(matrix, 0);
         if (horizontal.has_value()) {
             ret += horizontal.value() * 100;
         }
 
-        auto vertical = VerticalReflectionIndex(matrix);
+        auto vertical = VerticalReflectionIndex(matrix, 0);
         if (vertical.has_value()) {
             ret += vertical.value();
         }
@@ -110,5 +109,17 @@ size_t PartOne(Input input)
 size_t PartTwo(Input input)
 {
     size_t ret = 0;
+    for (auto &matrix : input) {
+        auto horizontal = HorizontalReflectionIndex(matrix, 1);
+        if (horizontal.has_value()) {
+            ret += horizontal.value() * 100;
+        }
+
+        auto vertical = VerticalReflectionIndex(matrix, 1);
+        if (vertical.has_value()) {
+            ret += vertical.value();
+        }
+    }
+
     return ret;
 }

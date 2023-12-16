@@ -11,8 +11,8 @@ typedef vector<CharMatrix> Input;
 
 Input ParseInput(const string &filename);
 
-optional<size_t> VerticalReflectionIndex(CharMatrix &matrix);
-optional<size_t> HorizontalReflectionIndex(CharMatrix &matrix);
+optional<size_t> VerticalReflectionIndex(CharMatrix &matrix, size_t diffs);
+optional<size_t> HorizontalReflectionIndex(CharMatrix &matrix, size_t diffs);
 
 size_t PartOne(Input input);
 size_t PartTwo(Input input);
