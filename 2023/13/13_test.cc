@@ -12,24 +12,24 @@ TEST_CASE("ParseInput", TAGS)
     REQUIRE(input.size() == 2);
 }
 
-// TEST_CASE("VerticalReflectionIndex", TAGS)
-// {
-//     auto input = ParseInput("inputs/13.test.txt");
-//     REQUIRE(VerticalReflectionIndex(input[0])[0] == 5);
-//     REQUIRE(VerticalReflectionIndex(input[1]).empty());
-// }
+TEST_CASE("VerticalReflectionIndex", TAGS)
+{
+    auto input = ParseInput("inputs/13.test.txt");
+    REQUIRE(VerticalReflectionIndex(input[0]) == 5);
+    REQUIRE(VerticalReflectionIndex(input[1]) == nullopt);
+}
 
 TEST_CASE("VerticalReflectionIndex (2)", TAGS)
 {
     auto input = ParseInput("inputs/13.test2.txt");
-    REQUIRE(VerticalReflectionIndex(input[0])[0] == 1);
+    REQUIRE(VerticalReflectionIndex(input[0]) == 1);
 }
 
 TEST_CASE("HorizontalReflectionIndex", TAGS)
 {
     auto input = ParseInput("inputs/13.test.txt");
-    REQUIRE(HorizontalReflectionIndex(input[0]).empty());
-    REQUIRE(HorizontalReflectionIndex(input[1])[0] == 4);
+    REQUIRE(HorizontalReflectionIndex(input[0]) == nullopt);
+    REQUIRE(HorizontalReflectionIndex(input[1]) == 4);
 }
 
 TEST_CASE("Part 1", TAGS)

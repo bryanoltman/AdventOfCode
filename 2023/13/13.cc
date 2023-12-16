@@ -27,9 +27,8 @@ Input ParseInput(const string &filename)
     return ret;
 }
 
-vector<size_t> VerticalReflectionIndex(CharMatrix &matrix)
+optional<size_t> VerticalReflectionIndex(CharMatrix &matrix)
 {
-    vector<size_t> ret;
     for (size_t vert_idx = 1; vert_idx < matrix.Width(); vert_idx++) {
         bool has_symmetry = true;
         for (size_t y = 0; y < matrix.Height(); y++) {
@@ -52,16 +51,15 @@ vector<size_t> VerticalReflectionIndex(CharMatrix &matrix)
         }
 
         if (has_symmetry) {
-            ret.push_back(vert_idx);
+            return vert_idx;
         }
     }
 
-    return ret;
+    return nullopt;
 }
 
-vector<size_t> HorizontalReflectionIndex(CharMatrix &matrix)
+optional<size_t> HorizontalReflectionIndex(CharMatrix &matrix)
 {
-    vector<size_t> ret;
     for (size_t horiz_idx = 1; horiz_idx < matrix.Height(); horiz_idx++) {
         bool has_symmetry = true;
         for (size_t x = 0; x < matrix.Width(); x++) {
@@ -84,26 +82,25 @@ vector<size_t> HorizontalReflectionIndex(CharMatrix &matrix)
         }
 
         if (has_symmetry) {
-            ret.push_back(horiz_idx);
+            return horiz_idx;
         }
     }
 
-    return ret;
+    return nullopt;
 }
 
 size_t PartOne(Input input)
 {
     size_t ret = 0;
     for (auto &matrix : input) {
-
-        auto horizontals = HorizontalReflectionIndex(matrix);
-        for (auto &idx : horizontals) {
-            ret += idx * 100;
+        auto horizontal = HorizontalReflectionIndex(matrix);
+        if (horizontal.has_value()) {
+            ret += horizontal.value() * 100;
         }
 
-        auto verticals = VerticalReflectionIndex(matrix);
-        for (auto &idx : verticals) {
-            ret += idx;
+        auto vertical = VerticalReflectionIndex(matrix);
+        if (vertical.has_value()) {
+            ret += vertical.value();
         }
     }
 
