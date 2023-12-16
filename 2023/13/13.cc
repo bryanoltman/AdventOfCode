@@ -1,5 +1,4 @@
 #include <cstddef>
-#include <iostream>
 
 #include "13/13.h"
 #include "shared/shared.h"

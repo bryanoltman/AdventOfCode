@@ -3,11 +3,15 @@
 
 #include <string>
 
+#include "shared/shared.h"
+
 using namespace std;
 
-typedef vector<string> Input;
+typedef CharMatrix Input;
 
 Input ParseInput(const string &filename);
+
+CharMatrix ApplyTilt(CharMatrix &matrix);
 
 size_t PartOne(Input input);
 size_t PartTwo(Input input);
