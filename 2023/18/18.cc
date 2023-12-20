@@ -219,6 +219,7 @@ size_t PartOne(Input input)
 
 size_t PartTwo(Input input)
 {
+  // TODO: look into https://en.wikipedia.org/wiki/Shoelace_formula
   size_t ret = 0;
   return ret;
 }
