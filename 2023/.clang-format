@@ -1,0 +1,3 @@
+AllowShortBlocksOnASingleLine: Never
+BreakBeforeBraces: Stroustrup
+IndentWidth: 2
