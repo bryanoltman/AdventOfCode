@@ -11,7 +11,7 @@ TEST_CASE("ParseInput", TAGS) { auto input = ParseInput("inputs/17.test.txt"); }
 TEST_CASE("Part 1", TAGS)
 {
     auto input = ParseInput("inputs/17.test.txt");
-    REQUIRE(PartOne(input) == 0);
+    REQUIRE(PartOne(input) == 102);
 }
 
 TEST_CASE("Part 2", TAGS)

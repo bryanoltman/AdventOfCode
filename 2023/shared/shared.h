@@ -33,8 +33,8 @@ struct Point {
 class CharMatrix {
 public:
     CharMatrix(vector<string> lines);
-    vector<pair<int, int>> NeighborPoints(int x, int y, bool include_diagonal = true);
-    vector<char> Neighbors(int x, int y, bool include_diagonal = true);
+    vector<Point> NeighborPoints(Point point, bool include_diagonal = true);
+    vector<char> Neighbors(Point point, bool include_diagonal = true);
     vector<vector<char>> chars;
     char CharAt(pair<size_t, size_t> point);
 

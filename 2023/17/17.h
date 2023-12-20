@@ -3,9 +3,11 @@
 
 #include <string>
 
+#include "shared/shared.h"
+
 using namespace std;
 
-typedef vector<string> Input;
+typedef CharMatrix Input;
 
 Input ParseInput(const string &filename);
 

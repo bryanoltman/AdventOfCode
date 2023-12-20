@@ -67,36 +67,35 @@ CharMatrix::CharMatrix(vector<string> lines)
 
 char CharMatrix::CharAt(pair<size_t, size_t> point) { return chars[point.second][point.first]; }
 
-vector<pair<int, int>> CharMatrix::NeighborPoints(int x, int y, bool include_diagonal)
+vector<Point> CharMatrix::NeighborPoints(Point point, bool include_diagonal)
 {
-    vector<pair<int, int>> neighbors;
+    vector<Point> neighbors;
 
-    vector<pair<int, int>> possible_neighbor_points;
+    vector<Point> possible_neighbor_points;
     if (include_diagonal) {
         possible_neighbor_points = {
-            make_pair(x - 1, y - 1),
-            make_pair(x, y - 1),
-            make_pair(x + 1, y - 1),
+            Point { point.x - 1, point.y - 1 },
+            Point { point.x, point.y - 1 },
+            Point { point.x + 1, point.y - 1 },
 
-            make_pair(x - 1, y),
-            make_pair(x + 1, y),
+            Point { point.x - 1, point.y },
+            Point { point.x + 1, point.y },
 
-            make_pair(x - 1, y + 1),
-            make_pair(x, y + 1),
-            make_pair(x + 1, y + 1),
+            Point { point.x - 1, point.y + 1 },
+            Point { point.x, point.y + 1 },
+            Point { point.x + 1, point.y + 1 },
         };
     } else {
         possible_neighbor_points = {
-            make_pair(x, y - 1),
-            make_pair(x - 1, y),
-            make_pair(x + 1, y),
-            make_pair(x, y + 1),
+            Point { point.x, point.y - 1 },
+            Point { point.x - 1, point.y },
+            Point { point.x + 1, point.y },
+            Point { point.x, point.y + 1 },
         };
     }
 
     for (auto &point : possible_neighbor_points) {
-        if (point.first >= 0 && point.first < Width() && point.second >= 0
-            && point.second < Height()) {
+        if (point.x >= 0 && point.y < Width() && point.y >= 0 && point.y < Height()) {
             neighbors.push_back(point);
         }
     }
@@ -104,12 +103,12 @@ vector<pair<int, int>> CharMatrix::NeighborPoints(int x, int y, bool include_dia
     return neighbors;
 }
 
-vector<char> CharMatrix::Neighbors(int x, int y, bool includeDiagonal)
+vector<char> CharMatrix::Neighbors(Point point, bool includeDiagonal)
 {
     vector<char> neighbors;
-    auto neighbor_points = NeighborPoints(x, y, includeDiagonal);
+    auto neighbor_points = NeighborPoints(point, includeDiagonal);
     for (auto &point : neighbor_points) {
-        neighbors.push_back(chars[point.second][point.first]);
+        neighbors.push_back(chars[point.y][point.x]);
     }
 
     return neighbors;
