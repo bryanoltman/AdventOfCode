@@ -3,9 +3,17 @@
 
 #include <string>
 
+#include "shared/shared.h"
+
 using namespace std;
 
-typedef vector<string> Input;
+struct Dig {
+    Point direction;
+    int distance;
+    int color;
+};
+
+typedef vector<Dig> Input;
 
 Input ParseInput(const string &filename);
 

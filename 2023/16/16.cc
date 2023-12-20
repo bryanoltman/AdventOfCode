@@ -5,11 +5,6 @@
 
 using namespace std;
 
-Point UP = { 0, -1 };
-Point DOWN = { 0, 1 };
-Point LEFT = { -1, 0 };
-Point RIGHT = { 1, 0 };
-
 struct Beam {
     Point pos;
     Point dir;

@@ -30,13 +30,18 @@ struct Point {
     }
 };
 
+const Point UP = { 0, -1 };
+const Point DOWN = { 0, 1 };
+const Point LEFT = { -1, 0 };
+const Point RIGHT = { 1, 0 };
+
 class CharMatrix {
 public:
     CharMatrix(vector<string> lines);
     vector<Point> NeighborPoints(Point point, bool include_diagonal = true);
     vector<char> Neighbors(Point point, bool include_diagonal = true);
     vector<vector<char>> chars;
-    char CharAt(pair<size_t, size_t> point);
+    char CharAt(Point point);
 
     size_t Height() const { return chars.size(); }
 
