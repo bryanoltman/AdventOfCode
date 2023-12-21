@@ -6,7 +6,12 @@ using namespace std;
 
 static auto TAGS = "Day 20";
 
-TEST_CASE("ParseInput", TAGS) { auto input = ParseInput("inputs/20.test.txt"); }
+TEST_CASE("ParseInput", TAGS)
+{
+  auto input = ParseInput("inputs/20.test.txt");
+  Module broadcast_module = input["broadcaster"];
+  REQUIRE(broadcast_module.destinations == (vector<string>){"a", "b", "c"});
+}
 
 TEST_CASE("Part 1", TAGS)
 {
