@@ -21,11 +21,11 @@ TEST_CASE("ParseInput", TAGS)
   REQUIRE(input.parts[0].s == 2876);
 }
 
-// TEST_CASE("Part 1", TAGS)
-// {
-//   auto input = ParseInput("inputs/19.test.txt");
-//   REQUIRE(PartOne(input) == 0);
-// }
+TEST_CASE("Part 1", TAGS)
+{
+  auto input = ParseInput("inputs/19.test.txt");
+  REQUIRE(PartOne(input) == 19114);
+}
 
 // TEST_CASE("Part 2", TAGS)
 // {

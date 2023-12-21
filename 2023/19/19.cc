@@ -10,7 +10,6 @@ using namespace std;
 
 Input ParseInput(const string &filename)
 {
-  cout << "ParseInput" << endl;
   regex workflow_regex(R"((\w+)\{(.+)\})");
   regex rule_regex(R"((\w)([>|<])(.+):(.+))");
   regex part_regex(R"(\{x=(\d+),m=(\d+),a=(\d+),s=(\d+)\})");
@@ -79,9 +78,69 @@ Input ParseInput(const string &filename)
   return ret;
 }
 
+int ValueForParameter(Part &part, char parameter)
+{
+  switch (parameter) {
+  case 'x':
+    return part.x;
+  case 'm':
+    return part.m;
+  case 'a':
+    return part.a;
+  case 's':
+    return part.s;
+  }
+
+  cerr << "Unknown parameter: " << parameter << endl;
+  exit(-1);
+}
+
+bool DoesRuleMatch(Rule &rule, Part &part)
+{
+  auto value = ValueForParameter(part, rule.parameter);
+  if (rule.gt) {
+    return value > rule.cmp;
+  }
+  else {
+    return value < rule.cmp;
+  }
+
+  cerr << "Unknown parameter: " << rule.parameter << endl;
+  exit(-1);
+}
+
+bool IsPartAccepted(Input &input, Part &part)
+{
+  string next = "in";
+  while (next != "R" && next != "A") {
+    auto workflow = input.workflows[next];
+    for (auto &rule : workflow.rules) {
+      if (DoesRuleMatch(rule, part)) {
+        next = rule.result;
+        break;
+      }
+    }
+  }
+
+  if (next == "R") {
+    return false;
+  }
+  else if (next == "A") {
+    return true;
+  }
+
+  cerr << "Unknown next: " << next << endl;
+  exit(-1);
+}
+
 size_t PartOne(Input input)
 {
   size_t ret = 0;
+  for (auto &part : input.parts) {
+    if (IsPartAccepted(input, part)) {
+      ret += part.x + part.m + part.a + part.s;
+    }
+  }
   return ret;
 }
 
