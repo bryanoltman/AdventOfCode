@@ -7,9 +7,9 @@
 using namespace std;
 
 struct Rule {
-  char parameter;
-  bool gt; // if false, lt
-  int cmp;
+  char parameter; // x, m, a, s
+  bool gt;        // if false, lt
+  unsigned long cmp;
   string result; // either a value or a rule name
 };
 

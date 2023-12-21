@@ -27,8 +27,8 @@ TEST_CASE("Part 1", TAGS)
   REQUIRE(PartOne(input) == 19114);
 }
 
-// TEST_CASE("Part 2", TAGS)
-// {
-//   auto input = ParseInput("inputs/19.test.txt");
-//   REQUIRE(PartTwo(input) == 0);
-// }
+TEST_CASE("Part 2", TAGS)
+{
+  auto input = ParseInput("inputs/19.test.txt");
+  REQUIRE(PartTwo(input) == 167409079868000);
+}

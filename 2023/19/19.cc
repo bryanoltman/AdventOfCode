@@ -25,14 +25,12 @@ Input ParseInput(const string &filename)
 
     smatch match;
     if (in_rules) {
-      // cout << "line: " << line << endl;
       regex_match(line, match, workflow_regex);
       Workflow workflow;
       auto workflow_name = match[1].str();
       auto rules_str = match[2].str();
       auto rules = SplitString(rules_str, ',');
       for (auto &rule_str : rules) {
-        // cout << "rule_str: " << rule_str << endl;
         regex_match(rule_str, match, rule_regex);
         Rule rule;
         if (!match.empty()) {
@@ -49,17 +47,9 @@ Input ParseInput(const string &filename)
         }
         workflow.rules.push_back(rule);
       }
-      // cout << "workflow name: \"" << workflow_name << "\"" << endl;
-      // for (auto &rule : workflow.rules) {
-      //   cout << "rule: " << rule.parameter << " " << rule.gt << " " <<
-      //   rule.cmp
-      //        << " " << rule.result << endl;
-      // }
       ret.workflows[workflow_name] = workflow;
     }
     else {
-      // cout << endl;
-      // cout << "line: " << line << endl;
       smatch match;
       bool has_match = regex_match(line, match, part_regex);
       if (!has_match) {
@@ -73,7 +63,6 @@ Input ParseInput(const string &filename)
       part.s = stoi(match[4].str());
       ret.parts.push_back(part);
     }
-    // cout << endl;
   }
   return ret;
 }
@@ -144,8 +133,110 @@ size_t PartOne(Input input)
   return ret;
 }
 
+struct PartRange {
+  unsigned long min_x;
+  unsigned long max_x;
+  unsigned long min_m;
+  unsigned long max_m;
+  unsigned long min_a;
+  unsigned long max_a;
+  unsigned long min_s;
+  unsigned long max_s;
+};
+
+pair<PartRange, PartRange> SplitRangeOnRule(PartRange range, Rule rule)
+{
+  auto accepted = range;
+  auto filtered = range;
+  switch (rule.parameter) {
+  case 'x':
+    if (rule.gt) {
+      accepted.min_x = max(accepted.min_x, rule.cmp + 1);
+      filtered.max_x = min(filtered.max_x, rule.cmp);
+    }
+    else {
+      accepted.max_x = min(accepted.max_x, rule.cmp - 1);
+      filtered.min_x = max(filtered.min_x, rule.cmp);
+    }
+    break;
+  case 'm':
+    if (rule.gt) {
+      accepted.min_m = max(accepted.min_m, rule.cmp + 1);
+      filtered.max_m = min(filtered.max_m, rule.cmp);
+    }
+    else {
+      accepted.max_m = min(accepted.max_m, rule.cmp - 1);
+      filtered.min_m = max(filtered.min_m, rule.cmp);
+    }
+    break;
+  case 'a':
+    if (rule.gt) {
+      accepted.min_a = max(accepted.min_a, rule.cmp + 1);
+      filtered.max_a = min(filtered.max_a, rule.cmp);
+    }
+    else {
+      accepted.max_a = min(accepted.max_a, rule.cmp - 1);
+      filtered.min_a = max(filtered.min_a, rule.cmp);
+    }
+
+    break;
+  case 's':
+    if (rule.gt) {
+      accepted.min_s = max(accepted.min_s, rule.cmp + 1);
+      filtered.max_s = min(filtered.max_s, rule.cmp);
+    }
+    else {
+      accepted.max_s = min(accepted.max_s, rule.cmp - 1);
+      filtered.min_s = max(filtered.min_s, rule.cmp);
+    }
+    break;
+  default:
+    cerr << "Unknown parameter: " << rule.parameter << endl;
+    exit(-1);
+  }
+
+  return {accepted, filtered};
+}
+
 size_t PartTwo(Input input)
 {
+  vector<pair<string, PartRange>> range_states;
+  range_states.push_back({
+      "in",
+      {1, 4000, 1, 4000, 1, 4000, 1, 4000},
+  });
+  vector<PartRange> accepted_part_ranges;
+  while (!range_states.empty()) {
+    auto range_state = range_states.back();
+    range_states.pop_back();
+    auto workflow = input.workflows[range_state.first];
+    auto remaining_range = range_state.second;
+    for (auto &rule : workflow.rules) {
+      auto split = SplitRangeOnRule(remaining_range, rule);
+      auto accepted = split.first;
+      remaining_range = split.second;
+      if (rule.result == "A") {
+        accepted_part_ranges.push_back(accepted);
+      }
+      else if (rule.result == "R") {
+        // do nothing
+        continue;
+      }
+      else {
+        range_states.push_back({rule.result, accepted});
+      }
+    }
+  }
+
   size_t ret = 0;
+
+  for (auto &range : accepted_part_ranges) {
+    auto x_range_width = range.max_x - range.min_x + 1;
+    auto m_range_width = range.max_m - range.min_m + 1;
+    auto a_range_width = range.max_a - range.min_a + 1;
+    auto s_range_width = range.max_s - range.min_s + 1;
+    ret += (x_range_width * m_range_width * a_range_width * s_range_width);
+  }
+
   return ret;
 }
