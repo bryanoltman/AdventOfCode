@@ -13,7 +13,7 @@ Input ParseInput(const string &filename)
   cout << "ParseInput" << endl;
   regex workflow_regex(R"((\w+)\{(.+)\})");
   regex rule_regex(R"((\w)([>|<])(.+):(.+))");
-  regex part_regex(R"(x=(\d+),m=(\d+),a=(\d+),s=(\d+))");
+  regex part_regex(R"(\{x=(\d+),m=(\d+),a=(\d+),s=(\d+)\})");
   auto lines = ReadLines(filename);
 
   Input ret;
@@ -26,14 +26,14 @@ Input ParseInput(const string &filename)
 
     smatch match;
     if (in_rules) {
-      cout << "line: " << line << endl;
+      // cout << "line: " << line << endl;
       regex_match(line, match, workflow_regex);
       Workflow workflow;
       auto workflow_name = match[1].str();
       auto rules_str = match[2].str();
       auto rules = SplitString(rules_str, ',');
       for (auto &rule_str : rules) {
-        cout << "rule_str: " << rule_str << endl;
+        // cout << "rule_str: " << rule_str << endl;
         regex_match(rule_str, match, rule_regex);
         Rule rule;
         if (!match.empty()) {
@@ -50,20 +50,22 @@ Input ParseInput(const string &filename)
         }
         workflow.rules.push_back(rule);
       }
-      cout << "workflow name: \"" << workflow_name << "\"" << endl;
-      for (auto &rule : workflow.rules) {
-        cout << "rule: " << rule.parameter << " " << rule.gt << " " << rule.cmp
-             << " " << rule.result << endl;
-      }
+      // cout << "workflow name: \"" << workflow_name << "\"" << endl;
+      // for (auto &rule : workflow.rules) {
+      //   cout << "rule: " << rule.parameter << " " << rule.gt << " " <<
+      //   rule.cmp
+      //        << " " << rule.result << endl;
+      // }
       ret.workflows[workflow_name] = workflow;
     }
     else {
-      cout << endl;
-      cout << "line: " << line << endl;
-      regex_match(line, match, part_regex);
-      if (match.empty()) {
-        cout << "no match" << endl;
-        continue;
+      // cout << endl;
+      // cout << "line: " << line << endl;
+      smatch match;
+      bool has_match = regex_match(line, match, part_regex);
+      if (!has_match) {
+        cerr << "no match for " << line << endl;
+        exit(-1);
       }
       Part part;
       part.x = stoi(match[1].str());
@@ -72,7 +74,7 @@ Input ParseInput(const string &filename)
       part.s = stoi(match[4].str());
       ret.parts.push_back(part);
     }
-    cout << endl;
+    // cout << endl;
   }
   return ret;
 }
