@@ -125,6 +125,62 @@ pair<size_t, size_t> PushButton(Input &input)
   return ret;
 }
 
+// Returns true if a low pulse was sent to module 'rx'.
+bool PushButtonPartTwo(Input &input)
+{
+  // source, dest, is_high_pulse
+  queue<tuple<string, string, bool>> pulses;
+  Module &broadcaster = input["broadcaster"];
+
+  for (auto &dest : broadcaster.destinations) {
+    pulses.push({broadcaster.name, dest, false});
+  }
+
+  while (!pulses.empty()) {
+    auto pulse = pulses.front();
+    pulses.pop();
+
+    auto source_name = get<0>(pulse);
+    auto dest_name = get<1>(pulse);
+    auto is_high_pulse = get<2>(pulse);
+
+    if (dest_name == "rx" && !is_high_pulse) {
+      return true;
+    }
+
+    auto &dest = input[dest_name];
+    if (dest.is_flip_flop) {
+      if (is_high_pulse) {
+        continue;
+      }
+
+      bool is_sending_high_pulse = !dest.is_on;
+      for (auto &new_dest : dest.destinations) {
+        pulses.push({dest_name, new_dest, is_sending_high_pulse});
+      }
+      dest.is_on = !dest.is_on;
+    }
+    else {
+      // mod is conjunction
+      dest.inputs[source_name] = is_high_pulse;
+      bool are_all_inputs_high = true;
+      for (auto &input : dest.inputs) {
+        if (!input.second) {
+          are_all_inputs_high = false;
+          break;
+        }
+      }
+
+      bool is_sending_high_pulse = !are_all_inputs_high;
+      for (auto &new_dest : dest.destinations) {
+        pulses.push({dest_name, new_dest, is_sending_high_pulse});
+      }
+    }
+  }
+
+  return false;
+}
+
 size_t PartOne(Input input)
 {
   pair<size_t, size_t> ret = {0, 0};
@@ -139,6 +195,12 @@ size_t PartOne(Input input)
 
 size_t PartTwo(Input input)
 {
-  size_t ret = 0;
-  return ret;
+  int presses = 1;
+  while (!PushButtonPartTwo(input)) {
+    presses++;
+    if (presses % 1000 == 0) {
+      cout << "Presses: " << presses << endl;
+    }
+  }
+  return presses;
 }
