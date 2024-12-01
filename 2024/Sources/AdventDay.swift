@@ -69,7 +69,8 @@ extension AdventDay {
     guard let dataURL,
       let data = try? String(contentsOf: dataURL, encoding: .utf8)
     else {
-      fatalError("Couldn't find file '\(dataFilename).txt' in the 'Data' directory.")
+      fatalError(
+        "Couldn't find file '\(dataFilename).txt' in the 'Data' directory.")
     }
 
     // On Windows, line separators may be CRLF. Converting to LF so that \n
