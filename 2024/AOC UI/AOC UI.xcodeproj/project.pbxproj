@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		ED3698402CFD5B11004E55AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED3698262CFD5B10004E55AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED36982D2CFD5B10004E55AB;
+			remoteInfo = "AOC UI";
+		};
+		ED36984A2CFD5B11004E55AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED3698262CFD5B10004E55AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED36982D2CFD5B10004E55AB;
+			remoteInfo = "AOC UI";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ED36982E2CFD5B10004E55AB /* AOC UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AOC UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED36983F2CFD5B11004E55AB /* AOC UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AOC UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED3698492CFD5B11004E55AB /* AOC UIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AOC UIUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		ED3698302CFD5B10004E55AB /* AOC UI */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "AOC UI";
+			sourceTree = "<group>";
+		};
+		ED3698422CFD5B11004E55AB /* AOC UITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "AOC UITests";
+			sourceTree = "<group>";
+		};
+		ED36984C2CFD5B11004E55AB /* AOC UIUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "AOC UIUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED36982B2CFD5B10004E55AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED36983C2CFD5B11004E55AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED3698462CFD5B11004E55AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ED3698252CFD5B10004E55AB = {
+			isa = PBXGroup;
+			children = (
+				ED3698302CFD5B10004E55AB /* AOC UI */,
+				ED3698422CFD5B11004E55AB /* AOC UITests */,
+				ED36984C2CFD5B11004E55AB /* AOC UIUITests */,
+				ED36982F2CFD5B10004E55AB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ED36982F2CFD5B10004E55AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED36982E2CFD5B10004E55AB /* AOC UI.app */,
+				ED36983F2CFD5B11004E55AB /* AOC UITests.xctest */,
+				ED3698492CFD5B11004E55AB /* AOC UIUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED36982D2CFD5B10004E55AB /* AOC UI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED3698532CFD5B11004E55AB /* Build configuration list for PBXNativeTarget "AOC UI" */;
+			buildPhases = (
+				ED36982A2CFD5B10004E55AB /* Sources */,
+				ED36982B2CFD5B10004E55AB /* Frameworks */,
+				ED36982C2CFD5B10004E55AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				ED3698302CFD5B10004E55AB /* AOC UI */,
+			);
+			name = "AOC UI";
+			packageProductDependencies = (
+			);
+			productName = "AOC UI";
+			productReference = ED36982E2CFD5B10004E55AB /* AOC UI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ED36983E2CFD5B11004E55AB /* AOC UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED3698562CFD5B11004E55AB /* Build configuration list for PBXNativeTarget "AOC UITests" */;
+			buildPhases = (
+				ED36983B2CFD5B11004E55AB /* Sources */,
+				ED36983C2CFD5B11004E55AB /* Frameworks */,
+				ED36983D2CFD5B11004E55AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED3698412CFD5B11004E55AB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				ED3698422CFD5B11004E55AB /* AOC UITests */,
+			);
+			name = "AOC UITests";
+			packageProductDependencies = (
+			);
+			productName = "AOC UITests";
+			productReference = ED36983F2CFD5B11004E55AB /* AOC UITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ED3698482CFD5B11004E55AB /* AOC UIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED3698592CFD5B11004E55AB /* Build configuration list for PBXNativeTarget "AOC UIUITests" */;
+			buildPhases = (
+				ED3698452CFD5B11004E55AB /* Sources */,
+				ED3698462CFD5B11004E55AB /* Frameworks */,
+				ED3698472CFD5B11004E55AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED36984B2CFD5B11004E55AB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				ED36984C2CFD5B11004E55AB /* AOC UIUITests */,
+			);
+			name = "AOC UIUITests";
+			packageProductDependencies = (
+			);
+			productName = "AOC UIUITests";
+			productReference = ED3698492CFD5B11004E55AB /* AOC UIUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED3698262CFD5B10004E55AB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1610;
+				LastUpgradeCheck = 1610;
+				TargetAttributes = {
+					ED36982D2CFD5B10004E55AB = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					ED36983E2CFD5B11004E55AB = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = ED36982D2CFD5B10004E55AB;
+					};
+					ED3698482CFD5B11004E55AB = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = ED36982D2CFD5B10004E55AB;
+					};
+				};
+			};
+			buildConfigurationList = ED3698292CFD5B10004E55AB /* Build configuration list for PBXProject "AOC UI" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ED3698252CFD5B10004E55AB;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = ED36982F2CFD5B10004E55AB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED36982D2CFD5B10004E55AB /* AOC UI */,
+				ED36983E2CFD5B11004E55AB /* AOC UITests */,
+				ED3698482CFD5B11004E55AB /* AOC UIUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED36982C2CFD5B10004E55AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED36983D2CFD5B11004E55AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED3698472CFD5B11004E55AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED36982A2CFD5B10004E55AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED36983B2CFD5B11004E55AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED3698452CFD5B11004E55AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ED3698412CFD5B11004E55AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED36982D2CFD5B10004E55AB /* AOC UI */;
+			targetProxy = ED3698402CFD5B11004E55AB /* PBXContainerItemProxy */;
+		};
+		ED36984B2CFD5B11004E55AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED36982D2CFD5B10004E55AB /* AOC UI */;
+			targetProxy = ED36984A2CFD5B11004E55AB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		ED3698512CFD5B11004E55AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ED3698522CFD5B11004E55AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		ED3698542CFD5B11004E55AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "AOC UI/AOC_UI.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AOC UI/Preview Content\"";
+				DEVELOPMENT_TEAM = CMJKLHJ4YC;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.bryanoltman.AOC-UI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		ED3698552CFD5B11004E55AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "AOC UI/AOC_UI.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AOC UI/Preview Content\"";
+				DEVELOPMENT_TEAM = CMJKLHJ4YC;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.bryanoltman.AOC-UI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		ED3698572CFD5B11004E55AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CMJKLHJ4YC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.bryanoltman.AOC-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AOC UI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AOC UI";
+			};
+			name = Debug;
+		};
+		ED3698582CFD5B11004E55AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CMJKLHJ4YC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.bryanoltman.AOC-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AOC UI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AOC UI";
+			};
+			name = Release;
+		};
+		ED36985A2CFD5B11004E55AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CMJKLHJ4YC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.bryanoltman.AOC-UIUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "AOC UI";
+			};
+			name = Debug;
+		};
+		ED36985B2CFD5B11004E55AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CMJKLHJ4YC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.bryanoltman.AOC-UIUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "AOC UI";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED3698292CFD5B10004E55AB /* Build configuration list for PBXProject "AOC UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED3698512CFD5B11004E55AB /* Debug */,
+				ED3698522CFD5B11004E55AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED3698532CFD5B11004E55AB /* Build configuration list for PBXNativeTarget "AOC UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED3698542CFD5B11004E55AB /* Debug */,
+				ED3698552CFD5B11004E55AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED3698562CFD5B11004E55AB /* Build configuration list for PBXNativeTarget "AOC UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED3698572CFD5B11004E55AB /* Debug */,
+				ED3698582CFD5B11004E55AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED3698592CFD5B11004E55AB /* Build configuration list for PBXNativeTarget "AOC UIUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED36985A2CFD5B11004E55AB /* Debug */,
+				ED36985B2CFD5B11004E55AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ED3698262CFD5B10004E55AB /* Project object */;
+}
