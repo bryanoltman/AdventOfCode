@@ -21,7 +21,7 @@ struct Day02: AdventDay {
           var copy2 = levels
           copy2.remove(at: i + 1)
           var copy3 = levels
-          if (i > 0){
+          if i > 0 {
             copy3.remove(at: i - 1)
           }
           return checkLevels(levels: copy1, increasing: true)
@@ -40,7 +40,7 @@ struct Day02: AdventDay {
           var copy2 = levels
           copy2.remove(at: i + 1)
           var copy3 = levels
-          if (i > 0){
+          if i > 0 {
             copy3.remove(at: i - 1)
           }
           return checkLevels(levels: copy1, increasing: false)
@@ -58,7 +58,7 @@ struct Day02: AdventDay {
 
   func isSafe(levels: [Int], canSplit: Bool = false) -> Bool {
     return checkLevels(levels: levels, increasing: true, canSplit: canSplit)
-    || checkLevels(levels: levels, increasing: false, canSplit: canSplit)
+      || checkLevels(levels: levels, increasing: false, canSplit: canSplit)
   }
 
   func part1() -> Int {
