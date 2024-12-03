@@ -9,14 +9,16 @@ struct Day02: AdventDay {
       }
   }
 
-  func isIncreasingCorrectly(input: [Int]) -> Bool {
-    for (index, element) in input.enumerated() {
-      if index == input.count - 1 {
-        break
+  func checkLevels(levels: [Int], increasing: Bool) -> Bool {
+    for i in 0..<levels.count - 1 {
+      let current = levels[i]
+      let next = levels[i + 1]
+      let diff = next - current
+      if increasing && !(1..<4).contains(diff) {
+        return false
       }
 
-      let next = input[index + 1]
-      if next - element < 1 || next - element > 3 {
+      if !increasing && !(-3..<0).contains(diff) {
         return false
       }
     }
@@ -24,25 +26,13 @@ struct Day02: AdventDay {
     return true
   }
 
-  func isDecreasingCorrectly(input: [Int], allowedBadLevels: Int = 0) -> Bool {
-    for (index, element) in input.enumerated() {
-      if index == input.count - 1 {
-        break
-      }
-
-      let next = input[index + 1]
-      if next - element > -1 || next - element < -3 {
-        return false
-      }
-    }
-
-    return true
+  func isSafe(levels: [Int]) -> Bool {
+    return checkLevels(levels: levels, increasing: true)
+      || checkLevels(levels: levels, increasing: false)
   }
 
   func part1() -> Int {
-    return entities.count { line in
-      return isIncreasingCorrectly(input: line) || isDecreasingCorrectly(input: line)
-    }
+    return entities.count(where: isSafe)
   }
 
   func part2() -> Int {

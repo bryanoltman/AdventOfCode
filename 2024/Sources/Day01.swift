@@ -3,9 +3,10 @@ struct Day01: AdventDay {
 
   // Splits input data into its component parts and convert from string.
   var entities: [[Int]] {
-    data.split(separator: "\n").map {
-      $0.split(separator: "   ").compactMap { Int($0) }
-    }
+    data.split(separator: "\n")
+      .map {
+        $0.split(separator: "   ").compactMap { Int($0) }
+      }
   }
 
   func part1() -> Int {
@@ -24,9 +25,8 @@ struct Day01: AdventDay {
       counts[num] = (counts[num] ?? 0) + 1
     }
 
-    return leftNums.map { i in
-      i * (counts[i] ?? 0)
-    }
-    .reduce(0, +)
+    return
+      leftNums.map { i in i * (counts[i] ?? 0) }
+      .reduce(0, +)
   }
 }
