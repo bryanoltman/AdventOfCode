@@ -67,5 +67,31 @@ struct Day05: AdventDay {
       .reduce(0, +)
   }
 
-  func part2() -> Int { return 0 }
+  func fixOrdering(update: [Int]) -> [Int] {
+    var ret = update
+
+    while !isUpdateCorrectlyOrdered(update: ret) {
+      for (i, num) in ret.enumerated() {
+        guard let orderRule = orderRules[num] else {
+          continue
+        }
+
+        for ii in i..<ret.count {
+          if orderRule.before.contains(ret[ii]) {
+            ret.swapAt(i, ii)
+          }
+        }
+      }
+    }
+
+    return ret
+  }
+
+  func part2() -> Int {
+    return
+      updates.filter { !isUpdateCorrectlyOrdered(update: $0) }
+      .map { fixOrdering(update: $0) }
+      .map { $0[$0.count / 2] }
+      .reduce(0, +)
+  }
 }
