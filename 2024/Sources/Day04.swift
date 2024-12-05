@@ -75,7 +75,56 @@ struct Day04: AdventDay {
     return numXmases
   }
 
-  func part2() -> Int {
+  func findMasX(topLeftPos: Point) -> Int {
+    let aPos = topLeftPos + Point(x: 1, y: 1)
+    let lowerLeftPos = topLeftPos + Point(x: 0, y: 2)
+    let upperRightPos = topLeftPos + Point(x: 2, y: 0)
+    let lowerRightPos = topLeftPos + Point(x: 2, y: 2)
+
+    if lowerRightPos.x < 0 || lowerRightPos.x >= grid[0].count || lowerRightPos.y < 0
+      || lowerRightPos.y >= grid.count
+    {
+      return 0
+    }
+
+    let a = grid[aPos.y][aPos.x]
+    if a != "A" {
+      return 0
+    }
+
+    let topLeft = grid[topLeftPos.y][topLeftPos.x]
+    let bottomLeft = grid[lowerLeftPos.y][lowerLeftPos.x]
+    let topRight = grid[upperRightPos.y][upperRightPos.x]
+    let bottomRight = grid[lowerRightPos.y][lowerRightPos.x]
+
+    // S on top, M on bottom
+    if topLeft == "S" && topRight == "S" && bottomLeft == "M" && bottomRight == "M" {
+      return 1
+    }
+    // M on top, S on bottom
+    else if topLeft == "M" && topRight == "M" && bottomLeft == "S" && bottomRight == "S" {
+      return 1
+    }
+    // M on left, S on right
+    else if topLeft == "M" && topRight == "S" && bottomLeft == "M" && bottomRight == "S" {
+      return 1
+    }
+    // S on left, M or night
+    else if topLeft == "S" && topRight == "M" && bottomLeft == "S" && bottomRight == "M" {
+      return 1
+    }
+
     return 0
+  }
+
+  func part2() -> Int {
+    var numMasXes = 0
+    for y in 0..<grid.count {
+      for x in 0..<grid[0].count {
+        numMasXes += findMasX(topLeftPos: Point(x: x, y: y))
+      }
+    }
+
+    return numMasXes
   }
 }
