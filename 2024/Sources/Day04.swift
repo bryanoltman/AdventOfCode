@@ -1,15 +1,5 @@
 import Foundation
 
-struct Point {
-  let x: Int
-  let y: Int
-
-  static func + (lhs: Point, rhs: Point) -> Point {
-    return Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
-  }
-
-}
-
 struct Day04: AdventDay {
   init(data: String) {
     self.data = data
