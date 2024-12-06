@@ -23,6 +23,10 @@ struct Grid<T: Equatable> {
       }
   }
 
+  init(items: [[T]]) {
+    self.items = items
+  }
+
   let items: [[T]]
 
   func at(point: Point) -> T {

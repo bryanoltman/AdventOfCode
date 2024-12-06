@@ -27,5 +27,6 @@ import Testing
   }
 
   @Test func Part2() async throws {
+    #expect(Day06(data: input).part2() == 6)
   }
 }
