@@ -1,3 +1,11 @@
+struct Operations: OptionSet {
+  let rawValue: Int
+
+  static let addition = Operations(rawValue: 1 << 0)
+  static let multiplication = Operations(rawValue: 1 << 1)
+  static let concatenation = Operations(rawValue: 1 << 2)
+}
+
 struct Day07: AdventDay {
   struct Input {
     let rows: [Row]
@@ -32,26 +40,44 @@ struct Day07: AdventDay {
     row.numbers.count == 1
   }
 
-  func canSumToTotal(inputRow row: Input.Row) -> Bool {
+  func isCandidate(inputRow row: Input.Row, allowedOperations: Operations)
+    -> Bool
+  {
     // We abuse Input.row to maintain a running total and remaining numbers
     var totalingRows = [row]
     var completedRows: [Input.Row] = []
     while !totalingRows.isEmpty {
       let current = totalingRows.removeFirst()
-      if isRowDone(row: current) {
-        completedRows.append(current)
+
+      if current.total < current.numbers[0] {
         continue
       }
 
+      var adjustedNumbers = [Int]()
+      if allowedOperations.contains(.addition) {
+        adjustedNumbers.append(current.numbers[0] + current.numbers[1])
+      }
+
+      if allowedOperations.contains(.multiplication) {
+        adjustedNumbers.append(current.numbers[0] * current.numbers[1])
+      }
+
+      if allowedOperations.contains(.concatenation) {
+        adjustedNumbers.append(
+          Int("\(current.numbers[0])\(current.numbers[1])")!)
+      }
       let remainingNumbers = current.numbers.dropFirst(2)
-      let addRowNumbers =
-        [current.numbers[0] + current.numbers[1]] + remainingNumbers
-      let multRowNumbers =
-        [current.numbers[0] * current.numbers[1]] + remainingNumbers
-      totalingRows
-        .append(Input.Row(total: current.total, numbers: addRowNumbers))
-      totalingRows
-        .append(Input.Row(total: current.total, numbers: multRowNumbers))
+
+      for num in adjustedNumbers {
+        let adjustedRow = Input.Row(
+          total: row.total, numbers: [num] + remainingNumbers)
+
+        if isRowDone(row: adjustedRow) {
+          completedRows.append(adjustedRow)
+        } else {
+          totalingRows.append(adjustedRow)
+        }
+      }
     }
 
     return completedRows.contains { row in
@@ -60,10 +86,28 @@ struct Day07: AdventDay {
   }
 
   func part1() -> Int {
-    return input.rows.filter { canSumToTotal(inputRow: $0) }.map(\.total)
-      .reduce(
-        0, +)
+    return input.rows
+      .filter {
+        isCandidate(
+          inputRow: $0, allowedOperations: [.addition, .multiplication])
+      }
+      .map(\.total)
+      .reduce(0, +)
   }
 
-  func part2() -> Int { return 0 }
+  func part2() -> Int {
+    return input.rows
+      .filter {
+        isCandidate(
+          inputRow: $0,
+          allowedOperations: [
+            .addition,
+            .multiplication,
+            .concatenation,
+          ]
+        )
+      }
+      .map(\.total)
+      .reduce(0, +)
+  }
 }
