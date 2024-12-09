@@ -109,16 +109,7 @@ struct Day08: AdventDay {
       let listPoints = Array(points)
       for i in 0..<listPoints.count {
         for j in (i + 1)..<listPoints.count {
-          let a = listPoints[i]
-          let b = listPoints[j]
-          let currentAntinodes = getAntinodesPart2(a: a, b: b)
-          for currentAntinode in currentAntinodes {
-            guard grid.contains(point: currentAntinode) else {
-              continue
-            }
-
-            antinodes.insert(currentAntinode)
-          }
+          antinodes.formUnion(getAntinodesPart2(a: listPoints[i], b: listPoints[j]))
         }
       }
     }
