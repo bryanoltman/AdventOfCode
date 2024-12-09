@@ -6,10 +6,10 @@ import Testing
   let input = "2333133121414131402"
 
   @Test func Part1() {
-    #expect(Day09(data: input).part1() == 0)
+    #expect(Day09(data: input).part1() == 1928)
   }
 
   @Test func Part2() {
-    #expect(Day09(data: input).part2() == 0)
+    #expect(Day09(data: input).part2() == 2858)
   }
 }
