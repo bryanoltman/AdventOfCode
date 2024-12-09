@@ -18,7 +18,7 @@ import Testing
 
   @Test func ParsesInput() {
     let day07 = Day07(data: input)
-    #expect(day07.input.rows.count == 8)
+    #expect(day07.input.rows.count == 9)
     #expect(day07.input.rows[0].total == 190)
   }
 
