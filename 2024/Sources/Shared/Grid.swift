@@ -3,7 +3,15 @@ struct Point: Equatable, Hashable {
   let y: Int
 
   static func + (lhs: Point, rhs: Point) -> Point {
-    return Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+    Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+  }
+
+  static func - (lhs: Point, rhs: Point) -> Point {
+    Point(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+  }
+
+  static func * (lhs: Point, rhs: Int) -> Point {
+    Point(x: lhs.x * rhs, y: lhs.y * rhs)
   }
 
   static let up = Point(x: 0, y: -1)
@@ -13,6 +21,10 @@ struct Point: Equatable, Hashable {
   static let right = Point(x: 1, y: 0)
 
   static let left = Point(x: -1, y: 0)
+
+  func manhattanDistance(from other: Point) -> Int {
+    abs(self.y - other.y) + abs(self.x - other.x)
+  }
 }
 
 struct Grid<T: Equatable> {
@@ -21,13 +33,28 @@ struct Grid<T: Equatable> {
       .map { line in
         line.map { itemConverter(String($0)) }
       }
+    self.points = Grid<T>.pointsFromItems(items: items)
   }
 
   init(items: [[T]]) {
     self.items = items
+    self.points = Grid<T>.pointsFromItems(items: items)
   }
 
   let items: [[T]]
+
+  let points: Set<Point>
+
+  static private func pointsFromItems(items: [[T]]) -> Set<Point> {
+    var allPoints = Set<Point>()
+    for x in 0..<items.count {
+      for y in 0..<items[0].count {
+        allPoints.insert(Point(x: x, y: y))
+      }
+    }
+
+    return allPoints
+  }
 
   func at(point: Point) -> T {
     items[point.y][point.x]
@@ -38,15 +65,6 @@ struct Grid<T: Equatable> {
   }
 
   func findFirst(item: T) -> Point? {
-    for x in 0..<items.count {
-      for y in 0..<items[0].count {
-        if items[y][x] == item {
-          return Point(x: x, y: y)
-        }
-      }
-    }
-
-    return nil
+    return points.first { at(point: $0) == item }
   }
-
 }
