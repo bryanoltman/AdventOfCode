@@ -24,12 +24,12 @@ import Testing
     let a1 = Point(x: 8, y: 8)
     let a2 = Point(x: 9, y: 9)
     #expect(
-      day.getAntinodes(a: a1, b: a2) == [
+      day.getAntinodesPart1(a: a1, b: a2) == [
         Point(x: 7, y: 7), Point(x: 10, y: 10),
       ]
     )
     #expect(
-      day.getAntinodes(a: a2, b: a1) == [
+      day.getAntinodesPart1(a: a2, b: a1) == [
         Point(x: 10, y: 10), Point(x: 7, y: 7),
       ]
     )
@@ -37,7 +37,7 @@ import Testing
     let b1 = Point(x: 8, y: 1)
     let b2 = Point(x: 5, y: 2)
     #expect(
-      day.getAntinodes(a: b1, b: b2) == [
+      day.getAntinodesPart1(a: b1, b: b2) == [
         Point(x: 11, y: 0), Point(x: 2, y: 3),
       ]
     )
@@ -48,5 +48,6 @@ import Testing
   }
 
   @Test func Part2() {
+    #expect(Day08(data: input).part2() == 34)
   }
 }

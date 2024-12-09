@@ -29,7 +29,7 @@ struct Day08: AdventDay {
     return map
   }
 
-  func getAntinodes(a: Point, b: Point) -> [Point] {
+  func getAntinodesPart1(a: Point, b: Point) -> [Point] {
     let slope = a - b
 
     var antinodes = [Point]()
@@ -59,7 +59,7 @@ struct Day08: AdventDay {
   /// same frequency - but only when one of the antennas is twice as far away as the other.
   /// This means that for any pair of antennas with the same frequency, there are two antinodes,
   /// one on either side of them.
-  func getAntinodes(grid: Grid<String>) -> Set<Point> {
+  func getAntinodesPart1(grid: Grid<String>) -> Set<Point> {
     var antinodes = Set<Point>()
     for (_, points) in antennaMap(grid: grid) {
       let listPoints = Array(points)
@@ -67,7 +67,7 @@ struct Day08: AdventDay {
         for j in (i + 1)..<listPoints.count {
           let a = listPoints[i]
           let b = listPoints[j]
-          let currentAntinodes = getAntinodes(a: a, b: b)
+          let currentAntinodes = getAntinodesPart1(a: a, b: b)
           for currentAntinode in currentAntinodes {
             guard grid.contains(point: currentAntinode) else {
               continue
@@ -83,10 +83,50 @@ struct Day08: AdventDay {
   }
 
   func part1() -> Int {
-    getAntinodes(grid: grid).count
+    getAntinodesPart1(grid: grid).count
+  }
+
+  func getAntinodesPart2(a: Point, b: Point) -> Set<Point> {
+    let slope = a - b
+
+    var antinodes = Set<Point>()
+    var candidate = a
+    while grid.contains(point: candidate) {
+      antinodes.insert(candidate)
+      candidate = candidate + slope
+    }
+    candidate = a
+    while grid.contains(point: candidate) {
+      antinodes.insert(candidate)
+      candidate = candidate - slope
+    }
+    return antinodes
+  }
+
+  func getAntinodesPart2(grid: Grid<String>) -> Set<Point> {
+    var antinodes = Set<Point>()
+    for (_, points) in antennaMap(grid: grid) {
+      let listPoints = Array(points)
+      for i in 0..<listPoints.count {
+        for j in (i + 1)..<listPoints.count {
+          let a = listPoints[i]
+          let b = listPoints[j]
+          let currentAntinodes = getAntinodesPart2(a: a, b: b)
+          for currentAntinode in currentAntinodes {
+            guard grid.contains(point: currentAntinode) else {
+              continue
+            }
+
+            antinodes.insert(currentAntinode)
+          }
+        }
+      }
+    }
+
+    return antinodes
   }
 
   func part2() -> Int {
-    return 0
+    getAntinodesPart2(grid: grid).count
   }
 }
