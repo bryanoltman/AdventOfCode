@@ -67,4 +67,14 @@ struct Grid<T: Equatable> {
   func findFirst(item: T) -> Point? {
     return points.first { at(point: $0) == item }
   }
+
+  func neighbors(point: Point) -> Set<Point> {
+    let candidates = [
+      point + Point(x: 0, y: 1),
+      point + Point(x: 0, y: -1),
+      point + Point(x: 1, y: 0),
+      point + Point(x: -1, y: 0),
+    ]
+    return Set(candidates.filter(contains(point:)))
+  }
 }

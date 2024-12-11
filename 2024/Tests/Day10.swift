@@ -14,11 +14,14 @@ import Testing
     10456732
     """
 
+
   @Test func Part1() {
-    #expect(Day10(data: input).part1() == 0)
+    let day = Day10(data: input)
+    #expect(day.trailheads.count == 9)
+    #expect(day.part1() == 36)
   }
 
   @Test func Part2() {
-    #expect(Day10(data: input).part2() == 0)
+    #expect(Day10(data: input).part2() == 81)
   }
 }
