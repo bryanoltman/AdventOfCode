@@ -77,12 +77,73 @@ struct Day12: AdventDay {
 
   func part1() -> Int {
     let regions = getRegions(grid: grid)
-    return regions.map { perimeter(points: $0.points) * area(points: $0.points) }
-      .reduce(0, +)
+    return regions.map {
+      perimeter(points: $0.points) * area(points: $0.points)
+    }
+    .reduce(0, +)
+  }
+
+  func isTopLeftCorner(point: Point, points: Set<Point>) -> Bool {
+    !points.contains(Point(x: point.x - 1, y: point.y))
+      && !points.contains(Point(x: point.x, y: point.y - 1))
+  }
+
+  func isTopRightCorner(point: Point, points: Set<Point>) -> Bool {
+    !points.contains(Point(x: point.x + 1, y: point.y))
+      && !points.contains(Point(x: point.x, y: point.y - 1))
+  }
+
+  func isBottomLeftCorner(point: Point, points: Set<Point>) -> Bool {
+    !points.contains(Point(x: point.x - 1, y: point.y))
+      && !points.contains(Point(x: point.x, y: point.y + 1))
+  }
+
+  func isBottomRightCorner(point: Point, points: Set<Point>) -> Bool {
+    !points.contains(Point(x: point.x + 1, y: point.y))
+      && !points.contains(Point(x: point.x, y: point.y + 1))
+  }
+
+  func isTopLeftElbow(point: Point, points: Set<Point>) -> Bool {
+    points.contains(Point(x: point.x + 1, y: point.y))
+      && points.contains(Point(x: point.x, y: point.y + 1))
+      && !points.contains(Point(x: point.x + 1, y: point.y + 1))
+  }
+
+  func isTopRightElbow(point: Point, points: Set<Point>) -> Bool {
+    points.contains(Point(x: point.x - 1, y: point.y))
+      && points.contains(Point(x: point.x, y: point.y + 1))
+      && !points.contains(Point(x: point.x - 1, y: point.y + 1))
+  }
+  
+  func isBottomLeftElbow(point: Point, points: Set<Point>) -> Bool {
+    points.contains(Point(x: point.x + 1, y: point.y))
+    && points.contains(Point(x: point.x, y: point.y - 1))
+    && !points.contains(Point(x: point.x + 1, y: point.y - 1))
+  }
+  
+  func isBottomRightElbow(point: Point, points: Set<Point>) -> Bool {
+    points.contains(Point(x: point.x - 1, y: point.y))
+    && points.contains(Point(x: point.x, y: point.y - 1))
+    && !points.contains(Point(x: point.x - 1, y: point.y - 1))
+  }
+
+  func numCorners(point: Point, points: Set<Point>) -> Int {
+    return [
+      isTopLeftCorner(point: point, points: points),
+      isTopRightCorner(point: point, points: points),
+      isBottomLeftCorner(point: point, points: points),
+      isBottomRightCorner(point: point, points: points),
+      isTopLeftElbow(point: point, points: points),
+      isTopRightElbow(point: point, points: points),
+      isBottomLeftElbow(point: point, points: points),
+      isBottomRightElbow(point: point, points: points)
+    ].count { $0 }
   }
 
   func numSides(points: Set<Point>) -> Int {
-    return 0
+    return points.reduce(0) { count, point in
+      count + numCorners(point: point, points: points)
+    }
   }
 
   func part2() -> Int {
