@@ -27,6 +27,6 @@ import Testing
   }
 
   @Test func Part2() async throws {
-    #expect(Day13(data: input).part2() == 0)
+    #expect(Day13(data: input).part2() == 875318608908)
   }
 }
