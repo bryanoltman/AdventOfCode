@@ -3,7 +3,6 @@ import Testing
 @testable import AdventOfCode
 
 @Suite("Day TODO") struct DayTODOTests {
-
   let input = """
     """
 
