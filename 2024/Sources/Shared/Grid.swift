@@ -25,6 +25,7 @@ struct Point: Equatable, Hashable {
   func manhattanDistance(from other: Point) -> Int {
     abs(self.y - other.y) + abs(self.x - other.x)
   }
+
 }
 
 struct Grid<T: Equatable> {
@@ -41,9 +42,9 @@ struct Grid<T: Equatable> {
     self.points = Grid<T>.pointsFromItems(items: items)
   }
 
-  let items: [[T]]
+  var items: [[T]]
 
-  let points: Set<Point>
+  var points: Set<Point>
 
   static private func pointsFromItems(items: [[T]]) -> Set<Point> {
     var allPoints = Set<Point>()
@@ -61,11 +62,22 @@ struct Grid<T: Equatable> {
   }
 
   func contains(point: Point) -> Bool {
-    return !(point.x < 0 || point.x >= items[0].count || point.y < 0 || point.y >= items.count)
+    !(point.x < 0 || point.x >= items[0].count || point.y < 0
+      || point.y >= items.count)
+  }
+
+  func filter(isIncluded: (T) -> Bool) -> [Point] {
+    points.filter { p in isIncluded(at(point: p)) }
   }
 
   func findFirst(item: T) -> Point? {
-    return points.first { at(point: $0) == item }
+    points.first { at(point: $0) == item }
+  }
+
+  mutating func swap(_ point: Point, _ otherPoint: Point) {
+    let tmp = items[point.y][point.x]
+    items[point.y][point.x] = items[otherPoint.y][otherPoint.x]
+    items[otherPoint.y][otherPoint.x] = tmp
   }
 
   func neighbors(point: Point) -> Set<Point> {
@@ -76,5 +88,14 @@ struct Grid<T: Equatable> {
       point + Point(x: -1, y: 0),
     ]
     return Set(candidates.filter(contains(point:)))
+  }
+
+  func print() {
+    for y in 0..<items.count {
+      for x in 0..<items[y].count {
+        Swift.print(items[y][x], terminator: "")
+      }
+      Swift.print()
+    }
   }
 }
