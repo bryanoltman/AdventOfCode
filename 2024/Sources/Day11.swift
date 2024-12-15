@@ -1,14 +1,3 @@
-struct StonesState {
-  let numZeros: Int
-  let numOnes: Int
-  // Mapping of stone numbers to how many of them we have
-  let otherStoneCounts: [Int: Int]
-
-  var totalStones: Int {
-    numZeros + numOnes + otherStoneCounts.values.reduce(0, +)
-  }
-}
-
 struct Day11: AdventDay {
   var data: String
 

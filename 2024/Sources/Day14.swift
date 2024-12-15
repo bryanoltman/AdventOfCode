@@ -119,6 +119,9 @@ struct Day14: AdventDay {
   }
 
   func part2() -> Int {
+    // After printing every second of output, I noticed clumping occurring
+    // every 101 and 103 steps, offset by 20 and 90 respectively (121, 222,
+    // 323... and 193, 296, 399...)
     for i in 0..<10000000 {
       let second = i + 1
       if (second - 20) % 101 == 0 && (second - 90) % 103 == 0 {

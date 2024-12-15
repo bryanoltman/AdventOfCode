@@ -42,6 +42,7 @@ struct Day13: AdventDay {
   let buttonPairs: [ButtonPair]
 
   func getMin(buttonPair bp: ButtonPair) -> Int {
+    // Found this linear algebra magic in an online solution. Need to come back and make sure I understand it.
     let Rx = bp.prize.x
     let Ry = bp.prize.y
     let Ax = bp.buttonA.x
