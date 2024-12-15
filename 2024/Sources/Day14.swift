@@ -101,7 +101,33 @@ struct Day14: AdventDay {
     return quadrants[1]! * quadrants[2]! * quadrants[3]! * quadrants[4]!
   }
 
+  func printRobotPositions(robots: [Robot]) {
+    for y in 0..<height {
+      var line = ""
+      for x in 0..<width {
+        let point = Point(x: x, y: y)
+        let numRobotsAtPoint = robots.count { $0.position == point }
+        if numRobotsAtPoint == 0 {
+          line += "."
+        } else {
+          line += String(numRobotsAtPoint)
+        }
+      }
+
+      print(line)
+    }
+  }
+
   func part2() -> Int {
+    for i in 0..<10000000 {
+      let second = i + 1
+      if (second - 20) % 101 == 0 && (second - 90) % 103 == 0 {
+        let updatedRobots = robotPositions(seconds: second)
+        print("at \(second) seconds:")
+        printRobotPositions(robots: updatedRobots)
+        print("\n\n")
+      }
+    }
     return 0
   }
 }
