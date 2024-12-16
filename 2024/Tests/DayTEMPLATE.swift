@@ -6,11 +6,11 @@ import Testing
   let input = """
     """
 
-  @Test func Part1() async throws {
+  @Test func Part1() {
     #expect(DayTODO(data: input).part1() == 0)
   }
 
-  @Test func Part2() async throws {
+  @Test func Part2() {
     #expect(DayTODO(data: input).part2() == 0)
   }
 }
