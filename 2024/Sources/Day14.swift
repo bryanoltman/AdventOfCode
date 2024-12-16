@@ -12,14 +12,17 @@ struct Day14: AdventDay {
     self.width = width
     self.height = height
     self.data = data
-    self.robots = data.split(separator: "\n").map {
-      Day14.parseRobotLine(String($0))
-    }
+    self.robots = data.split(separator: "\n")
+      .map {
+        Day14.parseRobotLine(String($0))
+      }
   }
 
   static func parseRobotLine(_ line: String) -> Robot {
-    let parts = line.trimmingCharacters(in: .whitespacesAndNewlines).split(
-      separator: " ")
+    let parts = line.trimmingCharacters(in: .whitespacesAndNewlines)
+      .split(
+        separator: " "
+      )
     let positionStr = parts[0].replacingOccurrences(of: "p=", with: "")
     let velocityStr = parts[1].replacingOccurrences(of: "v=", with: "")
 
@@ -82,11 +85,14 @@ struct Day14: AdventDay {
     for p in positions {
       if quad1XRange.contains(p.x) && quad1YRange.contains(p.y) {
         quadrants[1, default: 0] += 1
-      } else if quad2XRange.contains(p.x) && quad2YRange.contains(p.y) {
+      }
+      else if quad2XRange.contains(p.x) && quad2YRange.contains(p.y) {
         quadrants[2, default: 0] += 1
-      } else if quad3XRange.contains(p.x) && quad3YRange.contains(p.y) {
+      }
+      else if quad3XRange.contains(p.x) && quad3YRange.contains(p.y) {
         quadrants[3, default: 0] += 1
-      } else if quad4XRange.contains(p.x) && quad4YRange.contains(p.y) {
+      }
+      else if quad4XRange.contains(p.x) && quad4YRange.contains(p.y) {
         quadrants[4, default: 0] += 1
       }
     }
@@ -109,7 +115,8 @@ struct Day14: AdventDay {
         let numRobotsAtPoint = robots.count { $0.position == point }
         if numRobotsAtPoint == 0 {
           line += "."
-        } else {
+        }
+        else {
           line += String(numRobotsAtPoint)
         }
       }
@@ -122,13 +129,14 @@ struct Day14: AdventDay {
     // After printing every second of output, I noticed clumping occurring
     // every 101 and 103 steps, offset by 20 and 90 respectively (121, 222,
     // 323... and 193, 296, 399...)
-    for i in 0..<10000000 {
+    for i in 0..<10_000_000 {
       let second = i + 1
       if (second - 20) % 101 == 0 && (second - 90) % 103 == 0 {
-        let updatedRobots = robotPositions(seconds: second)
-        print("at \(second) seconds:")
-        printRobotPositions(robots: updatedRobots)
-        print("\n\n")
+        // This prints its first tree at 6888 seconds
+        //        let updatedRobots = robotPositions(seconds: second)
+        //        print("at \(second) seconds:")
+        //        printRobotPositions(robots: updatedRobots)
+        //        print("\n\n")
       }
     }
     return 0

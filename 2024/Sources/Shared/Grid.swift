@@ -34,22 +34,22 @@ struct Grid<T: Equatable> {
       .map { line in
         line.map { itemConverter(String($0)) }
       }
-    self.points = Grid<T>.pointsFromItems(items: items)
   }
 
   init(items: [[T]]) {
     self.items = items
-    self.points = Grid<T>.pointsFromItems(items: items)
   }
 
   var items: [[T]]
 
-  var points: Set<Point>
+  var points: Set<Point> {
+    Grid<T>.pointsFromItems(items: items)
+  }
 
   static private func pointsFromItems(items: [[T]]) -> Set<Point> {
     var allPoints = Set<Point>()
-    for x in 0..<items.count {
-      for y in 0..<items[0].count {
+    for y in 0..<items.count {
+      for x in 0..<items[0].count {
         allPoints.insert(Point(x: x, y: y))
       }
     }

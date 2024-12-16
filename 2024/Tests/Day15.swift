@@ -3,7 +3,20 @@ import Testing
 @testable import AdventOfCode
 
 @Suite("Day 15") struct Day15Tests {
-  let input = """
+  let smallInput = """
+    ########
+    #..O.O.#
+    ##@.O..#
+    #...O..#
+    #.#.O..#
+    #...O..#
+    #......#
+    ########
+
+    <^^>>>vv<v>>v<<
+    """
+
+  let largeInput = """
     ##########
     #..O..O.O#
     #......O.#
@@ -28,10 +41,11 @@ import Testing
     """
 
   @Test func Part1() async throws {
-    #expect(Day15(data: input).part1() == 10092)
+    #expect(Day15(data: smallInput).part1() == 2028)
+    #expect(Day15(data: largeInput).part1() == 10092)
   }
 
   @Test func Part2() async throws {
-    #expect(Day15(data: input).part2() == 0)
+    #expect(Day15(data: largeInput).part2() == 9021)
   }
 }
