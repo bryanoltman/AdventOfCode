@@ -10,7 +10,21 @@ import Testing
 
     Program: 0,1,5,4,3,0
     """
-
+  
+  @Test func Square() {
+    #expect(1 << 2 == 4)
+  }
+  
+  @Test func Trunc() {
+    #expect(Int(3.99) == 3)
+  }
+  
+  @Test func bitwiseXor() {
+    let three = 3
+    #expect(three^1 == 2)
+    #expect(three^4 == 7)
+  }
+  
   @Test func Part1() {
     #expect(Day17(data: input).part1() == 0)
   }

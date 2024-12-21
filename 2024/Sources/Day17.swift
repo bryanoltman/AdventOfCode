@@ -75,7 +75,7 @@ struct Day17: AdventDay {
 
       switch op {
       case .adv:
-        // combo operand
+        // Divide reg A by 2 to the power of its operand (combo)
         let operand = getComboOperand(instrs[instrPtr], cpu: cpu)
         instrPtr += 1
 
@@ -94,7 +94,7 @@ struct Day17: AdventDay {
         cpu.regB = operand % 8
       case .jnz:
         if cpu.regA == 0 {
-          break
+          continue
         }
 
         // literal operand
@@ -114,7 +114,7 @@ struct Day17: AdventDay {
         let operand = getComboOperand(instrs[instrPtr], cpu: cpu)
         instrPtr += 1
 
-        let numerator = cpu.regB
+        let numerator = cpu.regA
         let denominator = 1 << operand
         cpu.regB = Int(numerator / denominator)
       case .cdv:
@@ -122,7 +122,7 @@ struct Day17: AdventDay {
         let operand = getComboOperand(instrs[instrPtr], cpu: cpu)
         instrPtr += 1
 
-        let numerator = cpu.regC
+        let numerator = cpu.regA
         let denominator = 1 << operand
         cpu.regC = Int(numerator / denominator)
       }
@@ -130,6 +130,7 @@ struct Day17: AdventDay {
   }
 
   func part1() -> Int {
+    // 7,0,3,6,2,1,2,6,1 is wrong
     runProgram(program, on: computer)
     return 0
   }
