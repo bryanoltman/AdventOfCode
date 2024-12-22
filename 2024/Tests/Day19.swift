@@ -21,6 +21,6 @@ import Testing
   }
 
   @Test func Part2() {
-    #expect(Day19(data: input).part2() == 0)
+    #expect(Day19(data: input).part2() == 16)
   }
 }

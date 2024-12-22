@@ -13,42 +13,49 @@ struct Day19: AdventDay {
 
   let candidateDesigns: [String]
 
-  func canMakeDesignBacktrack(_ design: String, designCache: inout [String: Bool]) -> Bool {
+  func numWaysToMakeDesign(_ design: String, designCache: inout [String: Int]) -> Int {
     if design.isEmpty {
-      return true
+      return 1
     }
 
-    if let result = designCache[design] {
-      return result
+    if let configs = designCache[design] {
+      return configs
     }
 
+    var configs = 0
     for pattern in patterns {
       guard design.starts(with: pattern) else {
         continue
       }
 
       let nextDesign = String(design.dropFirst(pattern.count))
-      if canMakeDesignBacktrack(nextDesign, designCache: &designCache) {
-        designCache[nextDesign] = true
-        return true
-      }
+      let numConfigs = numWaysToMakeDesign(nextDesign, designCache: &designCache)
+      configs += numConfigs
     }
 
-    designCache[design] = false
-    return false
+    designCache[design] = configs
+    return configs
   }
 
   func part1() -> Int {
-    var designCache = [String: Bool]()
+    var designCache = [String: Int]()
     return candidateDesigns.count { design in
       if !patterns.contains(where: { design.hasSuffix($0) }) {
         return false
       }
-      return canMakeDesignBacktrack(design, designCache: &designCache)
+      return numWaysToMakeDesign(design, designCache: &designCache) > 0
     }
   }
 
   func part2() -> Int {
-    return 0
+    var designCache2 = [String: Int]()
+    return
+      candidateDesigns.map { design in
+        if !patterns.contains(where: { design.hasSuffix($0) }) {
+          return 0
+        }
+        return numWaysToMakeDesign(design, designCache: &designCache2)
+      }
+      .reduce(0, +)
   }
 }
