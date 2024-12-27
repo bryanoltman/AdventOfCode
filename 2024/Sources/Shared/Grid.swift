@@ -26,6 +26,14 @@ struct Point: Equatable, Hashable {
     abs(self.y - other.y) + abs(self.x - other.x)
   }
 
+  // Assumes self and other share an axis
+  func direction(to other: Point) -> Point {
+    if other.x == x {
+      return y < other.y ? Point.down : Point.up
+    } else {
+      return x < other.x ? Point.right : Point.left
+    }
+  }
 }
 
 struct Grid<T: Equatable> {

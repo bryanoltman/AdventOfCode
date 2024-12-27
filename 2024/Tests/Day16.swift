@@ -42,8 +42,8 @@ import Testing
     """
 
   @Test func Part1() {
-    #expect(Day16(data: input1).part1() == 0)
-    #expect(Day16(data: input2).part1() == 0)
+    #expect(Day16(data: input1).part1() == 7036)
+    #expect(Day16(data: input2).part1() == 11048)
   }
 
   @Test func Part2() {
