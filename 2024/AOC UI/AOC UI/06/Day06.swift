@@ -149,7 +149,7 @@ class Day06Part1ViewModel: ObservableObject {
 //}
 
 struct Day06 {
-  tatic let data = """
+  static let data = """
     ....#.....
     .........#
     ..........
