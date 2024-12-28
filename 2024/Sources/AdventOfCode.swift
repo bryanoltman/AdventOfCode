@@ -21,6 +21,7 @@ let allChallenges: [any AdventDay] = [
   Day17(),
   Day18(),
   Day19(),
+  Day20(),
 ]
 
 @main
@@ -40,10 +41,12 @@ struct AdventOfCode: AsyncParsableCommand {
       if let day {
         if let challenge = allChallenges.first(where: { $0.day == day }) {
           return challenge
-        } else {
+        }
+        else {
           throw ValidationError("No solution found for day \(day)")
         }
-      } else {
+      }
+      else {
         return latestChallenge
       }
     }
@@ -56,13 +59,15 @@ struct AdventOfCode: AsyncParsableCommand {
 
   func run<T>(part: () async throws -> T, named: String) async -> Duration {
     var result: Result<T, Error>?
-    let timing = await ContinuousClock().measure {
-      do {
-        result = .success(try await part())
-      } catch {
-        result = .failure(error)
+    let timing = await ContinuousClock()
+      .measure {
+        do {
+          result = .success(try await part())
+        }
+        catch {
+          result = .failure(error)
+        }
       }
-    }
     switch result! {
     case .success(let success):
       print("\(named): \(success)")
@@ -78,7 +83,8 @@ struct AdventOfCode: AsyncParsableCommand {
     let challenges =
       if all {
         allChallenges
-      } else {
+      }
+      else {
         try [selectedChallenge]
       }
 
