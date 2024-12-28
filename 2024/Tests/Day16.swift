@@ -47,6 +47,12 @@ import Testing
   }
 
   @Test func Part2() {
-    #expect(Day16(data: input1).part2() == 0)
+    var day1 = Day16(data: input1)
+    day1.testScoreOverride = 7036
+    #expect(day1.part2() == 45)
+
+    var day2 = Day16(data: input2)
+    day2.testScoreOverride = 11048
+    #expect(day2.part2() == 64)
   }
 }

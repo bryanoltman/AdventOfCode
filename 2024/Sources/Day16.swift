@@ -1,3 +1,18 @@
+struct ScoredPath: Comparable {
+  let score: Int
+  let direction: Point
+  let path: [Point]
+
+  static func < (lhs: ScoredPath, rhs: ScoredPath) -> Bool {
+    return lhs.score < rhs.score
+  }
+}
+
+struct DirectionPoint: Hashable {
+  let direction: Point
+  let point: Point
+}
+
 struct Day16: AdventDay {
   init(data: String) {
     self.data = data
@@ -20,53 +35,117 @@ struct Day16: AdventDay {
   }
 
   func findBestPathScore() -> Int {
-    var openPaths: [(Int, [Point])] = [(0, [startPoint])]
-    var closedPaths = [(Int, [Point])]()
-    var currentBestScore = Int.max
-    var bestPointScores = [Point: Int]()
+    var heap = Heap<ScoredPath>()
+    heap.insert(ScoredPath(score: 0, direction: Point.right, path: [startPoint]))
+    var visited = Set<DirectionPoint>()
+    while !heap.isEmpty {
+      guard let path = heap.popMin() else {
+        return Int.max
+      }
 
-    while !openPaths.isEmpty {
-      let (currentScore, currentPath) = openPaths.popLast()!
-      let currentPoint = currentPath.last!
+      let currentPoint = path.path.last!
+      let currentScore = path.score
+      let currentDirection = path.direction
+      let currentDirectionPoint = DirectionPoint(direction: currentDirection, point: currentPoint)
 
-      if bestPointScores[currentPoint, default: Int.max] < currentScore {
+      if visited.contains(currentDirectionPoint) {
         continue
       }
 
-      bestPointScores[currentPoint] = currentScore
+      visited.insert(currentDirectionPoint)
 
       if currentPoint == endPoint {
-        closedPaths.append((currentScore, currentPath))
-        if currentScore < currentBestScore {
-          currentBestScore = currentScore
-        }
-        continue
+        return currentScore
       }
 
-      let neighbors = grid.neighbors(point: currentPoint)
-        .filter {
-          [".", "E", "S"].contains(grid.at(point: $0))
+      for neighbor in grid.neighbors(point: currentPoint) {
+        guard [".", "E", "S"].contains(grid.at(point: neighbor)) else {
+          continue
         }
-        .filter { !currentPath.contains($0) }
-      let currentDirection =
-        currentPath.count == 1
-        ? Point.right : currentPath[currentPath.count - 2].direction(to: currentPoint)
 
-      for n in neighbors {
-        let direction = currentPoint.direction(to: n)
+        let direction = currentPoint.direction(to: neighbor)
+        guard !visited.contains(DirectionPoint(direction: direction, point: neighbor)) else {
+          continue
+        }
+
         let movementCost = 1 + (direction == currentDirection ? 0 : 1000)
-        openPaths.append((currentScore + movementCost, currentPath + [n]))
+
+        heap.insert(
+          ScoredPath(
+            score: currentScore + movementCost,
+            direction: direction,
+            path: path.path + [neighbor]
+          )
+        )
       }
     }
 
-    return currentBestScore
+    return Int.max
   }
 
   func part1() -> Int {
     findBestPathScore()
   }
 
+  var testScoreOverride: Int?
+
+  func findPathsWithScore(_ score: Int) -> [[Point]] {
+    var heap = Heap<ScoredPath>()
+    heap.insert(ScoredPath(score: 0, direction: Point.right, path: [startPoint]))
+    var ret = [[Point]]()
+    while !heap.isEmpty {
+      guard let path = heap.popMin() else {
+        return []
+      }
+
+      let currentPoint = path.path.last!
+      let currentScore = path.score
+      let currentDirection = path.direction
+
+      if currentPoint == endPoint {
+        if currentScore == score {
+          ret.append(path.path)
+        }
+      }
+
+      if currentScore >= score {
+        continue
+      }
+
+      for neighbor in grid.neighbors(point: currentPoint) {
+        guard [".", "E", "S"].contains(grid.at(point: neighbor)) else {
+          continue
+        }
+
+        let direction = currentPoint.direction(to: neighbor)
+        guard !path.path.contains(neighbor) else {
+          continue
+        }
+
+        let movementCost = 1 + (direction == currentDirection ? 0 : 1000)
+        let newScore = currentScore + movementCost
+        if newScore <= score {
+          heap.insert(
+            ScoredPath(
+              score: currentScore + movementCost,
+              direction: direction,
+              path: path.path + [neighbor]
+            )
+          )
+        }
+      }
+    }
+
+    return ret
+  }
+
   func part2() -> Int {
-    return 0
+    let pointsOnPaths = findPathsWithScore(
+      // the test override or the answer from part 1
+      testScoreOverride ?? 93436
+    )
+    .flatMap { $0 }
+
+    return Set(pointsOnPaths).count
   }
 }
