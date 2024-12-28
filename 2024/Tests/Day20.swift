@@ -22,7 +22,7 @@ import Testing
     """
 
   @Test func Part1() {
-    #expect(Day20(data: input).part1() == 0)
+    #expect(Day20(data: input).part1() == 44)
   }
 
   @Test func Part2() {
