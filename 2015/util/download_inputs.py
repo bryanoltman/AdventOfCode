@@ -5,14 +5,14 @@ import requests
 
 def download_input(day: int, year: int, session: str) -> None:
     """Download the input file for a given day and year."""
-    padded_day = f"{day}".rjust(2, "0")
-    target_dir = f"src/{padded_day}"
+    filename = f"{f"{day}".rjust(2, "0")}.txt".rjust(2, "0")
+    target_dir = f"data"
     os.makedirs(target_dir, exist_ok=True)
     r = requests.get(
         f"https://adventofcode.com/{year}/day/{day}/input",
         cookies={"session": session},
     )
-    with open(f"{target_dir}/input.txt", "w") as f:
+    with open(f"{target_dir}/{filename}", "w") as f:
         f.write(r.text)
 
 

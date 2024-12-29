@@ -1,7 +1,8 @@
-from day import part1, part2
+from src.day01 import part1, part2
 
 
 def test_part1():
+    assert part1("(())") == 0
     assert part1("(())") == 0
     assert part1("()()") == 0
     assert part1("(((") == 3
