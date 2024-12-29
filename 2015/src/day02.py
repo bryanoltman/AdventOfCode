@@ -14,16 +14,32 @@ def part1(input):
     for i in input:
         l, w, h = line_to_dimensions(i)
         area = surface_area(l, w, h)
+        area += min(l * w, w * h, h * l)
         sum += area
-    return area
+    return sum
+
+
+def smallest_perimeter(l, w, h):
+    return min(2 * l + 2 * w, 2 * w + 2 * h, 2 * h + 2 * l)
+
+
+def volume(l, w, h):
+    return l * w * h
 
 
 def part2(input):
-    pass
+    sum = 0
+    for i in input:
+        l, w, h = line_to_dimensions(i)
+        perimeter = smallest_perimeter(l, w, h)
+        vol = volume(l, w, h)
+        sum += perimeter + vol
+
+    return sum
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     script_path = os.path.dirname(os.path.realpath(__file__))
-    input = open(f"{script_path}/input.txt", "r").read().splitlines()
+    input = open(f"{script_path}/../data/02.txt", "r").read().splitlines()
     print(f"Part 1: {part1(input)}")
     print(f"Part 2: {part2(input)}")
