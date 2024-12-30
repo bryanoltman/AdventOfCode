@@ -1,3 +1,4 @@
+from collections import defaultdict
 import os
 
 bad_substrs = {"ab", "cd", "pq", "xy"}
@@ -40,125 +41,8 @@ def part1(input):
     return num_good_strs
 
 
-nice_strs = {
-    "xilodxfuxphuiiii",
-    "tfetfqojqcdzlpbm",
-    "lgelzivplaeoivzh",
-    "ydjyboqwhfpqfydc",
-    "rmjfdwsqamjqehdq",
-    "ozminkgnkwqctrxz",
-    "vrtioawyxkivrpiq",
-    "dwkasufidwjrjfbf",
-    "nsoqqfudrtwszyqf",
-    "rrnybqhvrcgwvrkq",
-    "quffzywzpxyaepxa",
-    "scdqyrhoqmljhoil",
-    "vebzobmdbzvjnjtk",
-    "piljqxgicjzgifso",
-    "ibxkhjvzzxgavkha",
-    "pyxpyvvipbqibiox",
-    "ajbfmpqqobfsmesj",
-    "fouahjimfcisxima",
-    "ygduolbysehdudra",
-    "ezuqbrjozwuqafhb",
-    "weeguqeheeiigrue",
-    "jiyahihykjjkdaya",
-    "qmqaqsajmqwhetpk",
-    "zetxvrgjmblxvakr",
-    "ykbbldkoijlvicbl",
-    "lhoihfnbuqelthof",
-    "ywvwhrwhkaubvkbl",
-    "nrmsononytuwslsa",
-    "wgjkmsbwgfotdabi",
-    "tdpxknwacksotdub",
-    "mxopokqffisxosci",
-    "khtkhcvelidjdena",
-    "ajsxkdnerbmhyxaj",
-    "sesylkpvbndrdhsy",
-    "wknkurddcknbdleg",
-    "aacuiiwgaannunmm",
-    "qonbllojmloykjqe",
-    "kpavhqkukugocsxu",
-    "mosjlqswdngwqsmi",
-    "qjjymgqxhnjwxxhp",
-    "agnggugngadrcxoc",
-    "uhttadmdmhidpyjw",
-    "pzkkkkwrlvxiuysn",
-    "tdfvkreormspprer",
-    "otckgmojziezmojb",
-    "olylnjtkxgrubmtk",
-    "nxsdbqjuvwrrdbpq",
-    "wbabpirnpcsmpipw",
-    "linfbsnfvixlwykn",
-    "vxsluutrwskslnye",
-    "qxbovietpacqqxok",
-    "fdmzppzphhpzyuiz",
-    "wvfaoolwtkbrisvf",
-    "oehmvziiqwkzhzib",
-    "mbdwjntysntsaaby",
-    "lwktbgrzswbsweht",
-    "fupcimjupywzpqzp",
-    "mkvaatolvuggikvg",
-    "wnpxvmxvllxalulm",
-    "eivuuafkvudeouwy",
-    "uaqbnijtrhvqxjtb",
-    "bkkkkcwegvypbrio",
-    "hauwpjjwowbunbjj",
-    "awkftfagrfzywkhs",
-    "uedtpzxyubeveuek",
-    "kvshzltcrrururty",
-    "bgaychdlmchngqlp",
-    "slqyrcurcyuoxquo",
-    "dcjmxyzbzpohzprl",
-    "xgjbyhfgmtseiimt",
-    "qhgzujhgdruowoug",
-    "gfvjmmcgfhvgnfdq",
-    "dvelfeddvgjcyxkj",
-    "mdngnobasfpewlno",
-    "igfxyoaacoarlvay",
-    "dwmxqudvxqdenrur",
-    "qrzgrdlyyzbyykhg",
-    "hpmbxtpfosbsjixt",
-    "nkhsdkhqtzqbphhg",
-    "sysxssmvewyfjrve",
-    "gjeszjksbfsuejki",
-    "knjdrjthitjxluth",
-    "eiquffofoadmbuhk",
-    "vjhrkiwmunuiwqau",
-    "ndxmskrwrqysrndf",
-    "ypxoyjelhllhbeog",
-    "lnkminvfjjzqbmio",
-    "lmeooaajlthsfltw",
-    "liliptyoqujensfi",
-    "nsahsaxvaepzneqq",
-    "gxjzahtgbgbabtht",
-    "cfzuyxivtknirqvt",
-    "qkcdtkwuaquajazz",
-    "ivamtjbvairwjqwl",
-    "hcqhngvahzgawjga",
-    "pqedgfojyjybfbzr",
-    "lotxrswlxbxlxufs",
-    "zqqrhhmjwermjssg",
-    "xjpkifkhfjeqifdn",
-    "apsbnbkiopopytgu",
-    "uvbhdtvaypasaswa",
-    "jqwcwuuisrclircv",
-    "banrornfkcymmkcc",
-    "xlqwdrytzwnxzwzv",
-    "cvkyfcyfmubzwsee",
-    "ohgqnqhfimyuqhvi",
-    "bauieohjejamzien",
-    "aeyqlskpaehagdiv",
-    "iskrfbwxonkguywx",
-    "hekvbhtainkvbynx",
-    "gbbycjuscquaycrk",
-    "tstwsswswrxlzrqs",
-    "yzsmlbnftftgwadz",
-}
-
-
 def is_good_str_part2(str):
-    last_pair_idx = {}
+    last_pair_idx = defaultdict(list)
     has_repeating_letter = False
     has_repeating_pair = False
     for i, char in enumerate(str):
@@ -167,12 +51,10 @@ def is_good_str_part2(str):
                 has_repeating_letter = True
         if i + 1 < len(str):
             pair = f"{char}{str[i + 1]}"
-            if pair in last_pair_idx and last_pair_idx[pair] != i - 1:
+            if last_pair_idx[pair] and last_pair_idx[pair][0] != i - 1:
                 has_repeating_pair = True
-            last_pair_idx[pair] = i
+            last_pair_idx[pair].append(i)
 
-    if has_repeating_letter and has_repeating_letter and not str in nice_strs:
-        print("omg")
     return has_repeating_letter and has_repeating_pair
 
 
