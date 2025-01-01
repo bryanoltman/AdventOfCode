@@ -1,4 +1,4 @@
-from src.day01 import part1, part2
+from advent_of_code.src.day01 import part1, part2
 
 
 def test_part1():
