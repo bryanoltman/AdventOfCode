@@ -1,7 +1,6 @@
 {
   "python.testing.pytestArgs": [
-    "advent_of_code/tests"
-    
+    "tests/"
   ],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true

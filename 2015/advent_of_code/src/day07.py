@@ -6,7 +6,6 @@ circuit = dict()
 
 @functools.cache
 def resolve(wire):
-    # print(f"resolving {wire}")
     if wire.isdigit():
         return int(wire)
 
