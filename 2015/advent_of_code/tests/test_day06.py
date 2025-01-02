@@ -1,4 +1,4 @@
-from advent_of_code.src.day06 import part1, part2, toggle_range
+from advent_of_code.src.day06 import part1, part2
 
 
 def test_part1():
