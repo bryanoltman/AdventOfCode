@@ -25,7 +25,7 @@ def neighbors(grid, x, y):
     return [grid[p[1]][p[0]] for p in neighbor_points]
 
 
-def advance_step_part_1(grid):
+def advance_step(grid):
     new_grid = []
     for y in range(len(grid)):
         line = ""
@@ -46,32 +46,10 @@ def advance_step_part_1(grid):
 def part1(input):
     grid = parse_input(input)
     for _ in range(100):
-        grid = advance_step_part_1(grid)
+        grid = advance_step(grid)
 
     flat_list = list(chain.from_iterable(grid))
     return sum(x == "#" for x in flat_list)
-
-
-def advance_step_part_2(grid):
-    new_grid = []
-    width = len(grid[0])
-    height = len(grid)
-    for y in range(height):
-        line = ""
-        for x in range(width):
-            is_on = grid[y][x] == "#"
-            num_on_neighbors = len([n for n in neighbors(grid, x, y) if n == "#"])
-            if not is_on and num_on_neighbors == 3:
-                line += "#"
-            elif is_on and (num_on_neighbors == 2 or num_on_neighbors == 3):
-                line += "#"
-            else:
-                line += "."
-        new_grid.append(line)
-
-    new_grid[0] = "#" + new_grid[0][1:-1] + "#"
-    new_grid[-1] = "#" + new_grid[-1][1:-1] + "#"
-    return new_grid
 
 
 def part2(input):
@@ -81,7 +59,9 @@ def part2(input):
     grid[-1] = "#" + grid[-1][1:-1] + "#"
 
     for _ in range(100):
-        grid = advance_step_part_2(grid)
+        grid = advance_step(grid)
+        grid[0] = "#" + grid[0][1:-1] + "#"
+        grid[-1] = "#" + grid[-1][1:-1] + "#"
 
     flat_list = list(chain.from_iterable(grid))
     return sum(x == "#" for x in flat_list)
