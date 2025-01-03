@@ -32,9 +32,6 @@ def part2(input):
 
 
 if __name__ == "__main__":
-    sizes = [20, 15, 10, 5, 5]
-    find_container_combos(sizes, 25)
-
     script_path = os.path.dirname(os.path.realpath(__file__))
     input = open(f"{script_path}/../data/17.txt", "r").read().strip()
     print(f"Part 1: {part1(input)}")
