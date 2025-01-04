@@ -5,7 +5,8 @@ import requests
 
 def download_input(day: int, year: int, session: str) -> None:
     """Download the input file for a given day and year."""
-    filename = f"{f"{day}".rjust(2, "0")}.txt".rjust(2, "0")
+    day_str = f"{day}".rjust(2, "0")
+    filename = f"{day_str}.txt"
     target_dir = f"data"
     os.makedirs(target_dir, exist_ok=True)
     r = requests.get(
