@@ -20,10 +20,7 @@ def reversed_divisors(n):
 
 
 def num_presents_for_house(house_num):
-    ret = 0
-    for i in reversed_divisors(house_num):
-        ret += i
-    return int(ret * 10)
+    return sum(d * 10 for d in reversed_divisors(house_num))
 
 
 def part1(input):
