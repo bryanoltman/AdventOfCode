@@ -119,5 +119,8 @@ def part2(input_str):
 if __name__ == "__main__":
     script_path = os.path.dirname(os.path.realpath(__file__))
     input_str = open(f"{script_path}/data/05.txt", "r").read().strip()
+    # input 1
     print(f"Part 1: {part1(input_str)}")
+
+    # input 5
     print(f"Part 2: {part2(input_str)}")
