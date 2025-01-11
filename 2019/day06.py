@@ -41,8 +41,30 @@ def part1(input):
     return direct_orbits + indirect_orbits
 
 
-def part2(input):
+def search(seen, current_node, target_node) -> int:
+    seen.add(current_node)
+    neighbors = list(current_node.orbited_by)
+    if current_node.orbits:
+        neighbors.append(current_node.orbits)
+    for n in [n for n in neighbors if n not in seen]:
+        if n is target_node:
+            return 1
+        val = search(seen, n, target_node)
+        if val:
+            return val + 1
     return 0
+
+
+def part2(input):
+    start = "YOU"
+    end = "SAN"
+    nodes = parse_map(input)
+    start_node = nodes[start]
+    end_node = nodes[end]
+    path_length = search(set(), start_node, end_node)
+    # This is technically from start's parent to end's parent, so substract
+    # start and end
+    return path_length - 2
 
 
 if __name__ == "__main__":
