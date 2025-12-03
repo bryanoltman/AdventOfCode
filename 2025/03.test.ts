@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { parseInput, part1 } from "./03";
+import { parseInput, part1, part2 } from "./03";
 
 const input = `
 987654321111111
@@ -14,4 +14,6 @@ test("part1", () => {
   expect(part1(ranges)).toBe(357);
 });
 
-test("part2", () => {});
+test("part2", () => {
+  expect(part2(ranges)).toBe(3121910778619);
+});
