@@ -16,7 +16,7 @@ export function parseInput(input: string): GridValue[][] {
       if (c == "." || c == "@") {
         row.push(c);
       } else {
-        throw new Error("unexpected grid point value", c);
+        throw new Error(`unexpected grid point value ${c}`);
       }
     }
 
