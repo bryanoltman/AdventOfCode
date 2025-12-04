@@ -14,12 +14,12 @@ const input = `
 @.@.@@@.@.
 `;
 
-let ranges = parseInput(input);
+let map = parseInput(input);
 
 test("part1", () => {
-  expect(part1(ranges)).toBe(0);
+  expect(part1(map)).toBe(13);
 });
 
 test("part2", () => {
-  expect(part2(ranges)).toBe(0);
+  expect(part2(map)).toBe(0);
 });
