@@ -5,71 +5,38 @@ export function parseInput(input: string): string[] {
     .filter((e) => e.length > 0);
 }
 
-function largestTwoDigitNumberFromBatteryBank(bank: string): number {
+function largestNumberFromBatteryBank(bank: string, numDigits: number): number {
   const nums = bank.split("").map((c) => Number(c));
-  let biggestFirstNum = 0;
-  let firstNumIdx = 0;
-  for (let i = 0; i < nums.length - 1; i++) {
-    const currentNum = nums[i]!;
-    if (currentNum > biggestFirstNum) {
-      biggestFirstNum = currentNum;
-      firstNumIdx = i;
+  let numsToGo = numDigits;
+  let currentNumberIndex = 0;
+  var selectedBatteries = <number[]>[];
+  for (; numsToGo > 0; numsToGo--) {
+    let candidateNextNumberIdx = 0;
+    let candidateNextNumber = 0;
+    for (var i = currentNumberIndex; i < nums.length - numsToGo + 1; i++) {
+      let test = nums[i]!;
+      if (test > candidateNextNumber) {
+        candidateNextNumber = test;
+        candidateNextNumberIdx = i;
+      }
     }
+    selectedBatteries.push(candidateNextNumber);
+    currentNumberIndex = candidateNextNumberIdx + 1;
   }
 
-  let biggestSecondNum = 0;
-  for (let i = firstNumIdx + 1; i < nums.length; i++) {
-    const currentNum = nums[i]!;
-    if (currentNum > biggestSecondNum) {
-      biggestSecondNum = currentNum;
-    }
-  }
-
-  return biggestFirstNum * 10 + biggestSecondNum;
-}
-
-function largestNumberFromBatteryBank(
-  nums: number[],
-  acc: number[],
-  numDigits: number
-): number {
-  // console.log("nums", nums, "acc", acc, "numDigits", numDigits);
-  if (numDigits == 0) {
-    return Number(acc.map((e) => e.toString()).join(""));
-  }
-
-  let largestSoFar = 0;
-  for (let i = 0; i < nums.length; i++) {
-    const firstNum = nums[i]!;
-    const subStr = nums.slice(i + 1);
-    const curr = largestNumberFromBatteryBank(
-      subStr,
-      [...acc, firstNum],
-      numDigits - 1
-    );
-    if (curr > largestSoFar) {
-      largestSoFar = curr;
-    }
-  }
-
-  return largestSoFar;
-}
-
-function largestTwelveDigitNumberFromBatteryBank(bank: string): number {
-  const nums = bank.split("").map((c) => Number(c));
-  return largestNumberFromBatteryBank(nums, [], 12);
+  return Number(selectedBatteries.join(""));
 }
 
 export function part1(banks: string[]): number {
   return banks.reduce(
-    (acc, current) => acc + largestTwoDigitNumberFromBatteryBank(current),
+    (acc, current) => acc + largestNumberFromBatteryBank(current, 2),
     0
   );
 }
 
 export function part2(banks: string[]): number {
   return banks.reduce(
-    (acc, current) => acc + largestTwelveDigitNumberFromBatteryBank(current),
+    (acc, current) => acc + largestNumberFromBatteryBank(current, 12),
     0
   );
 }
