@@ -35,7 +35,22 @@ export function parseInput(input: string): Input {
 }
 
 export function part1(input: Input): number {
-  return 0;
+  let freshIngredientCount = 0;
+  for (const id of input.ingredientIDs) {
+    let isFresh = false;
+    for (const range of input.ranges) {
+      if (id >= range.beg && id <= range.end) {
+        isFresh = true;
+        break;
+      }
+    }
+
+    if (isFresh) {
+      freshIngredientCount += 1;
+    }
+  }
+
+  return freshIngredientCount;
 }
 
 export function part2(input: Input): number {
