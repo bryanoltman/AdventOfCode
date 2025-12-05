@@ -1,4 +1,4 @@
-type Range = {
+export type Range = {
   beg: number;
   end: number;
 };
@@ -53,8 +53,41 @@ export function part1(input: Input): number {
   return freshIngredientCount;
 }
 
+export function mergeRanges(ranges: Range[]): Range[] {
+  if (ranges.length === 0) {
+    return [];
+  }
+
+  // Sort the ranges by their start values
+  const sortedRanges = [...ranges].sort((a, b) => a.beg - b.beg);
+  const merged = <Range[]>[];
+  let currentMergedRange = sortedRanges[0]!;
+  for (let i = 1; i < sortedRanges.length; i++) {
+    const nextRange = sortedRanges[i]!;
+
+    // If ranges overlap, combine them
+    if (nextRange.beg <= currentMergedRange.end) {
+      currentMergedRange.end = Math.max(currentMergedRange.end, nextRange.end);
+    } else {
+      merged.push(currentMergedRange);
+      currentMergedRange = nextRange;
+    }
+  }
+
+  // Add the last merged range
+  merged.push(currentMergedRange);
+
+  return merged;
+}
+
 export function part2(input: Input): number {
-  return 0;
+  const ranges = mergeRanges(input.ranges);
+  let sum = 0;
+  for (const r of ranges) {
+    sum += r.end - r.beg + 1;
+  }
+
+  return sum;
 }
 
 const inputFile = Bun.file("./data/05.txt");
