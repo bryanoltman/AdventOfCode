@@ -75,7 +75,38 @@ export function part1(map: GridValue[][]): number {
 }
 
 export function part2(map: GridValue[][]): number {
-  return 0;
+  let currentMap = map;
+  let accessibleRolls = 0;
+  let hasChanged = false;
+
+  do {
+    let newMap = <GridValue[][]>[];
+    hasChanged = false;
+    for (let y = 0; y < currentMap.length; y++) {
+      let newRow = <GridValue[]>[];
+      for (let x = 0; x < currentMap[0]!.length; x++) {
+        const pointValue = currentMap[y]![x]!;
+        if (pointValue != "@") {
+          newRow.push(pointValue);
+          continue;
+        }
+        const neighborRolls = neighbors(currentMap, { x, y }).filter(
+          (v) => v == "@"
+        );
+        if (neighborRolls.length < 4) {
+          accessibleRolls += 1;
+          hasChanged = true;
+          newRow.push(".");
+        } else {
+          newRow.push(pointValue);
+        }
+      }
+      newMap.push(newRow);
+    }
+    currentMap = newMap;
+  } while (hasChanged);
+
+  return accessibleRolls;
 }
 
 const inputFile = Bun.file("./data/04.txt");
