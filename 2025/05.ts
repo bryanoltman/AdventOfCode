@@ -35,22 +35,9 @@ export function parseInput(input: string): Input {
 }
 
 export function part1(input: Input): number {
-  let freshIngredientCount = 0;
-  for (const id of input.ingredientIDs) {
-    let isFresh = false;
-    for (const range of input.ranges) {
-      if (id >= range.beg && id <= range.end) {
-        isFresh = true;
-        break;
-      }
-    }
-
-    if (isFresh) {
-      freshIngredientCount += 1;
-    }
-  }
-
-  return freshIngredientCount;
+  return input.ingredientIDs.filter((id) => {
+    return input.ranges.find((range) => id >= range.beg && id <= range.end);
+  }).length;
 }
 
 export function mergeRanges(ranges: Range[]): Range[] {
@@ -81,13 +68,9 @@ export function mergeRanges(ranges: Range[]): Range[] {
 }
 
 export function part2(input: Input): number {
-  const ranges = mergeRanges(input.ranges);
-  let sum = 0;
-  for (const r of ranges) {
-    sum += r.end - r.beg + 1;
-  }
-
-  return sum;
+  return mergeRanges(input.ranges)
+    .map((r) => r.end - r.beg + 1)
+    .reduce((acc, curr) => acc + curr);
 }
 
 const inputFile = Bun.file("./data/05.txt");
