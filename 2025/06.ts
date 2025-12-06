@@ -24,7 +24,6 @@ export function parseInput(input: string): Input {
     ret.push({ numbers: numRows.map((n) => n[i]!), operation: opRow[i]! });
   }
 
-  console.log(ret);
   return ret;
 }
 
