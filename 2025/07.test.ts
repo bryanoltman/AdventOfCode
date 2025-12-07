@@ -16,7 +16,8 @@ const rawInput = `.......S.......
 ..^...^.....^..
 ...............
 .^.^.^.^.^...^.
-...............`;
+...............
+`;
 
 let input = parseInput(rawInput);
 
@@ -25,5 +26,5 @@ test("part1", () => {
 });
 
 test("part2", () => {
-  expect(part2(input)).toBe(0);
+  expect(part2(input)).toBe(40);
 });
