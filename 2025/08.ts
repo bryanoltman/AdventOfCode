@@ -23,7 +23,7 @@ export function part2(input: Coord3D[]): number {
   return 0;
 }
 
-const inputFile = Bun.file("./data/07.txt");
+const inputFile = Bun.file("./data/08.txt");
 const inputFileExists = await inputFile.exists();
 if (inputFileExists) {
   const input = parseInput(await inputFile.text());
