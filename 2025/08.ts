@@ -4,19 +4,77 @@ type Coord3D = {
   z: number;
 };
 
+type CoordDistance = {
+  a: Coord3D;
+  b: Coord3D;
+  distance: number;
+};
+
+function distanceSquared(a: Coord3D, b: Coord3D): number {
+  return (
+    Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2) + Math.pow(b.z - a.z, 2)
+  );
+}
+
+function coordinateDistances(coords: Coord3D[]): CoordDistance[] {
+  const ret: CoordDistance[] = [];
+  for (let i = 0; i < coords.length; i++) {
+    for (let j = i + 1; j < coords.length; j++) {
+      const a = coords[i]!;
+      const b = coords[j]!;
+      ret.push({ a, b, distance: distanceSquared(a, b) });
+    }
+  }
+  return ret;
+}
+
 export function parseInput(input: string): Coord3D[] {
-  return input.split("\n").map((l) => {
-    const parts = l.split(",");
-    return {
-      x: Number(parts[0]!),
-      y: Number(parts[1]!),
-      z: Number(parts[2]!),
-    };
-  });
+  return input
+    .split("\n")
+    .map((l) => l.trim())
+    .filter((l) => l.length > 0)
+    .map((l) => {
+      const parts = l.split(",");
+      return {
+        x: Number(parts[0]!),
+        y: Number(parts[1]!),
+        z: Number(parts[2]!),
+      };
+    });
 }
 
 export function part1(input: Coord3D[]): number {
-  return 0;
+  const distances = coordinateDistances(input).sort(
+    (a, b) => a.distance - b.distance
+  );
+  let circuits: Set<Coord3D>[] = [];
+  for (const coord of input) {
+    const newSet: Set<Coord3D> = new Set();
+    newSet.add(coord);
+    circuits.push(newSet);
+  }
+
+  for (let i = 0; i < 1000; i++) {
+    const distance = distances[i]!;
+    const leftCircuitIdx = circuits.findIndex((c) => c.has(distance.a))!;
+    const rightCircuitIdx = circuits.findIndex((c) => c.has(distance.b))!;
+    if (leftCircuitIdx === rightCircuitIdx) {
+      continue;
+    }
+
+    const leftCircuit = circuits[leftCircuitIdx]!;
+    const rightCircuit = circuits[rightCircuitIdx]!;
+    for (const point of rightCircuit.values()) {
+      leftCircuit.add(point);
+    }
+    circuits = circuits.filter((c) => c != rightCircuit);
+  }
+
+  return circuits
+    .map((c) => c.size)
+    .sort((a, b) => b - a)
+    .slice(0, 3)
+    .reduce((acc, curr) => acc * curr);
 }
 
 export function part2(input: Coord3D[]): number {
