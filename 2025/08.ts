@@ -43,7 +43,7 @@ export function parseInput(input: string): Coord3D[] {
     });
 }
 
-export function part1(input: Coord3D[]): number {
+export function part1(input: Coord3D[], iterations: number = 1000): number {
   const distances = coordinateDistances(input).sort(
     (a, b) => a.distance - b.distance
   );
@@ -54,7 +54,7 @@ export function part1(input: Coord3D[]): number {
     circuits.push(newSet);
   }
 
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < iterations; i++) {
     const distance = distances[i]!;
     const leftCircuitIdx = circuits.findIndex((c) => c.has(distance.a))!;
     const rightCircuitIdx = circuits.findIndex((c) => c.has(distance.b))!;
@@ -78,7 +78,34 @@ export function part1(input: Coord3D[]): number {
 }
 
 export function part2(input: Coord3D[]): number {
-  return 0;
+  const distances = coordinateDistances(input).sort(
+    (a, b) => a.distance - b.distance
+  );
+  let circuits: Set<Coord3D>[] = [];
+  for (const coord of input) {
+    const newSet: Set<Coord3D> = new Set();
+    newSet.add(coord);
+    circuits.push(newSet);
+  }
+
+  let lastDistance = distances[0]!;
+  for (let i = 0; circuits.length > 1; i++) {
+    lastDistance = distances[i]!;
+    const leftCircuitIdx = circuits.findIndex((c) => c.has(lastDistance.a))!;
+    const rightCircuitIdx = circuits.findIndex((c) => c.has(lastDistance.b))!;
+    if (leftCircuitIdx === rightCircuitIdx) {
+      continue;
+    }
+
+    const leftCircuit = circuits[leftCircuitIdx]!;
+    const rightCircuit = circuits[rightCircuitIdx]!;
+    for (const point of rightCircuit.values()) {
+      leftCircuit.add(point);
+    }
+    circuits.splice(rightCircuitIdx, 1);
+  }
+
+  return lastDistance.a.x * lastDistance.b.x;
 }
 
 const inputFile = Bun.file("./data/08.txt");

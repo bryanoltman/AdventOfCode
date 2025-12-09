@@ -26,9 +26,9 @@ const rawInput = `162,817,812
 let input = parseInput(rawInput);
 
 test("part1", () => {
-  expect(part1(input)).toBe(40);
+  expect(part1(input, 10)).toBe(40);
 });
 
 test("part2", () => {
-  expect(part2(input)).toBe(0);
+  expect(part2(input)).toBe(25272);
 });
