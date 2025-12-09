@@ -18,7 +18,21 @@ export function parseInput(input: string): Coord2D[] {
 }
 
 export function part1(input: Coord2D[]): number {
-  return 0;
+  let largestArea = 0;
+  for (let i = 0; i < input.length; i++) {
+    const a = input[i]!;
+    for (let j = i + 1; j < input.length; j++) {
+      const b = input[j]!;
+      const width = Math.abs(b.x - a.x) + 1;
+      const height = Math.abs(b.y - a.y) + 1;
+      const area = width * height;
+      if (area > largestArea) {
+        largestArea = area;
+      }
+    }
+  }
+
+  return largestArea;
 }
 
 export function part2(input: Coord2D[]): number {
