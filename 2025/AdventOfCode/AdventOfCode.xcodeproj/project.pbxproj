@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		ED0FC10D2EE7C8E500E15C2B /* AdventOfCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0FC1012EE7C8E500E15C2B /* AdventOfCode.framework */; };
+		ED46012B2EE8865700733916 /* AdventOfCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0FC1012EE7C8E500E15C2B /* AdventOfCode.framework */; };
+		ED46012C2EE8865700733916 /* AdventOfCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED0FC1012EE7C8E500E15C2B /* AdventOfCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ED46013A2EE887AD00733916 /* 09.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED4601382EE887AD00733916 /* 09.txt */; };
+		ED46013B2EE887AD00733916 /* 03.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED4601322EE887AD00733916 /* 03.txt */; };
+		ED46013C2EE887AD00733916 /* 08.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED4601372EE887AD00733916 /* 08.txt */; };
+		ED46013D2EE887AD00733916 /* 04.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED4601332EE887AD00733916 /* 04.txt */; };
+		ED46013E2EE887AD00733916 /* 05.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED4601342EE887AD00733916 /* 05.txt */; };
+		ED46013F2EE887AD00733916 /* 06.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED4601352EE887AD00733916 /* 06.txt */; };
+		ED4601402EE887AD00733916 /* 01.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED4601302EE887AD00733916 /* 01.txt */; };
+		ED4601412EE887AD00733916 /* 02.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED4601312EE887AD00733916 /* 02.txt */; };
+		ED4601422EE887AD00733916 /* 07.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED4601362EE887AD00733916 /* 07.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -18,11 +29,51 @@
 			remoteGlobalIDString = ED0FC1002EE7C8E500E15C2B;
 			remoteInfo = AdventOfCode;
 		};
+		ED46012D2EE8865700733916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED0FC0F82EE7C8E400E15C2B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED0FC1002EE7C8E500E15C2B;
+			remoteInfo = AdventOfCode;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ED4601212EE8864B00733916 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		ED46012F2EE8865700733916 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				ED46012C2EE8865700733916 /* AdventOfCode.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		ED0FC1012EE7C8E500E15C2B /* AdventOfCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdventOfCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED0FC10C2EE7C8E500E15C2B /* AdventOfCodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdventOfCodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED4601232EE8864B00733916 /* AocCli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AocCli; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED4601302EE887AD00733916 /* 01.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 01.txt; sourceTree = "<group>"; };
+		ED4601312EE887AD00733916 /* 02.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 02.txt; sourceTree = "<group>"; };
+		ED4601322EE887AD00733916 /* 03.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 03.txt; sourceTree = "<group>"; };
+		ED4601332EE887AD00733916 /* 04.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 04.txt; sourceTree = "<group>"; };
+		ED4601342EE887AD00733916 /* 05.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 05.txt; sourceTree = "<group>"; };
+		ED4601352EE887AD00733916 /* 06.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 06.txt; sourceTree = "<group>"; };
+		ED4601362EE887AD00733916 /* 07.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 07.txt; sourceTree = "<group>"; };
+		ED4601372EE887AD00733916 /* 08.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 08.txt; sourceTree = "<group>"; };
+		ED4601382EE887AD00733916 /* 09.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 09.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -34,6 +85,11 @@
 		ED0FC1102EE7C8E500E15C2B /* AdventOfCodeTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AdventOfCodeTests;
+			sourceTree = "<group>";
+		};
+		ED4601242EE8864B00733916 /* AocCli */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AocCli;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -54,14 +110,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ED4601202EE8864B00733916 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED46012B2EE8865700733916 /* AdventOfCode.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		ED0FC0F72EE7C8E400E15C2B = {
 			isa = PBXGroup;
 			children = (
+				ED4601392EE887AD00733916 /* data */,
 				ED0FC1032EE7C8E500E15C2B /* AdventOfCode */,
 				ED0FC1102EE7C8E500E15C2B /* AdventOfCodeTests */,
+				ED4601242EE8864B00733916 /* AocCli */,
+				ED46012A2EE8865700733916 /* Frameworks */,
 				ED0FC1022EE7C8E500E15C2B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,9 +138,34 @@
 			children = (
 				ED0FC1012EE7C8E500E15C2B /* AdventOfCode.framework */,
 				ED0FC10C2EE7C8E500E15C2B /* AdventOfCodeTests.xctest */,
+				ED4601232EE8864B00733916 /* AocCli */,
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		ED46012A2EE8865700733916 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED4601392EE887AD00733916 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				ED4601302EE887AD00733916 /* 01.txt */,
+				ED4601312EE887AD00733916 /* 02.txt */,
+				ED4601322EE887AD00733916 /* 03.txt */,
+				ED4601332EE887AD00733916 /* 04.txt */,
+				ED4601342EE887AD00733916 /* 05.txt */,
+				ED4601352EE887AD00733916 /* 06.txt */,
+				ED4601362EE887AD00733916 /* 07.txt */,
+				ED4601372EE887AD00733916 /* 08.txt */,
+				ED4601382EE887AD00733916 /* 09.txt */,
+			);
+			name = data;
+			path = ../data;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -134,6 +226,30 @@
 			productReference = ED0FC10C2EE7C8E500E15C2B /* AdventOfCodeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		ED4601222EE8864B00733916 /* AocCli */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED4601292EE8864B00733916 /* Build configuration list for PBXNativeTarget "AocCli" */;
+			buildPhases = (
+				ED46011F2EE8864B00733916 /* Sources */,
+				ED4601202EE8864B00733916 /* Frameworks */,
+				ED4601212EE8864B00733916 /* CopyFiles */,
+				ED46012F2EE8865700733916 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED46012E2EE8865700733916 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				ED4601242EE8864B00733916 /* AocCli */,
+			);
+			name = AocCli;
+			packageProductDependencies = (
+			);
+			productName = AocCli;
+			productReference = ED4601232EE8864B00733916 /* AocCli */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -148,6 +264,9 @@
 						CreatedOnToolsVersion = 26.1.1;
 					};
 					ED0FC10B2EE7C8E500E15C2B = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+					ED4601222EE8864B00733916 = {
 						CreatedOnToolsVersion = 26.1.1;
 					};
 				};
@@ -168,6 +287,7 @@
 			targets = (
 				ED0FC1002EE7C8E500E15C2B /* AdventOfCode */,
 				ED0FC10B2EE7C8E500E15C2B /* AdventOfCodeTests */,
+				ED4601222EE8864B00733916 /* AocCli */,
 			);
 		};
 /* End PBXProject section */
@@ -177,6 +297,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED46013A2EE887AD00733916 /* 09.txt in Resources */,
+				ED46013B2EE887AD00733916 /* 03.txt in Resources */,
+				ED46013C2EE887AD00733916 /* 08.txt in Resources */,
+				ED46013D2EE887AD00733916 /* 04.txt in Resources */,
+				ED46013E2EE887AD00733916 /* 05.txt in Resources */,
+				ED46013F2EE887AD00733916 /* 06.txt in Resources */,
+				ED4601402EE887AD00733916 /* 01.txt in Resources */,
+				ED4601412EE887AD00733916 /* 02.txt in Resources */,
+				ED4601422EE887AD00733916 /* 07.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +333,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ED46011F2EE8864B00733916 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -211,6 +347,11 @@
 			isa = PBXTargetDependency;
 			target = ED0FC1002EE7C8E500E15C2B /* AdventOfCode */;
 			targetProxy = ED0FC10E2EE7C8E500E15C2B /* PBXContainerItemProxy */;
+		};
+		ED46012E2EE8865700733916 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED0FC1002EE7C8E500E15C2B /* AdventOfCode */;
+			targetProxy = ED46012D2EE8865700733916 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -449,6 +590,32 @@
 			};
 			name = Release;
 		};
+		ED4601272EE8864B00733916 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9422A6P5N6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		ED4601282EE8864B00733916 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9422A6P5N6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -475,6 +642,15 @@
 			buildConfigurations = (
 				ED0FC1192EE7C8E500E15C2B /* Debug */,
 				ED0FC11A2EE7C8E500E15C2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED4601292EE8864B00733916 /* Build configuration list for PBXNativeTarget "AocCli" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED4601272EE8864B00733916 /* Debug */,
+				ED4601282EE8864B00733916 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

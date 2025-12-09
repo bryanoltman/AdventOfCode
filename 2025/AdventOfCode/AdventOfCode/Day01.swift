@@ -1,16 +1,16 @@
 import Foundation
 
-struct Day01 {
-  enum Direction {
+public class Day01 {
+  public enum Direction {
     case right, left
   }
 
-  struct Rotation {
+  public struct Rotation {
     let direction: Direction
     let ticks: Int
   }
 
-  static func parseInput(raw: String) -> [Rotation] {
+  public static func parseInput(raw: String) -> [Rotation] {
     return raw.split(whereSeparator: \.isNewline).map { line in
       let dirChar = line.first
       var lineCopy = line
@@ -19,7 +19,7 @@ struct Day01 {
     }
   }
 
-  static func part1(rotations: [Rotation]) -> Int {
+  public static func part1(rotations: [Rotation]) -> Int {
     var dialValue = 50
     var zeroCount = 0
     for r in rotations {
@@ -46,7 +46,7 @@ struct Day01 {
     return zeroCount
   }
 
-  static func part2(rotations: [Rotation]) -> Int {
+  public static func part2(rotations: [Rotation]) -> Int {
     var dialValue = 50
     var zeroCount = 0
     for r in rotations {
