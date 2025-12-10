@@ -18,5 +18,5 @@ test("part1", () => {
 });
 
 test("part2", () => {
-  expect(part2(input)).toBe(0);
+  expect(part2(input)).toBe(24);
 });
