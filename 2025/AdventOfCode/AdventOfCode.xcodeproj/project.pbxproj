@@ -19,6 +19,8 @@
 		ED4601402EE887AD00733916 /* 01.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED4601302EE887AD00733916 /* 01.txt */; };
 		ED4601412EE887AD00733916 /* 02.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED4601312EE887AD00733916 /* 02.txt */; };
 		ED4601422EE887AD00733916 /* 07.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED4601362EE887AD00733916 /* 07.txt */; };
+		EDEFA7172EEB182F00E027E7 /* 11.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDEFA7162EEB182F00E027E7 /* 11.txt */; };
+		EDEFA7182EEB182F00E027E7 /* 10.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDEFA7152EEB182F00E027E7 /* 10.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		ED4601362EE887AD00733916 /* 07.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 07.txt; sourceTree = "<group>"; };
 		ED4601372EE887AD00733916 /* 08.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 08.txt; sourceTree = "<group>"; };
 		ED4601382EE887AD00733916 /* 09.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 09.txt; sourceTree = "<group>"; };
+		EDEFA7152EEB182F00E027E7 /* 10.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 10.txt; sourceTree = "<group>"; };
+		EDEFA7162EEB182F00E027E7 /* 11.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 11.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -162,6 +166,8 @@
 				ED4601362EE887AD00733916 /* 07.txt */,
 				ED4601372EE887AD00733916 /* 08.txt */,
 				ED4601382EE887AD00733916 /* 09.txt */,
+				EDEFA7152EEB182F00E027E7 /* 10.txt */,
+				EDEFA7162EEB182F00E027E7 /* 11.txt */,
 			);
 			name = data;
 			path = ../data;
@@ -302,6 +308,8 @@
 				ED46013C2EE887AD00733916 /* 08.txt in Resources */,
 				ED46013D2EE887AD00733916 /* 04.txt in Resources */,
 				ED46013E2EE887AD00733916 /* 05.txt in Resources */,
+				EDEFA7172EEB182F00E027E7 /* 11.txt in Resources */,
+				EDEFA7182EEB182F00E027E7 /* 10.txt in Resources */,
 				ED46013F2EE887AD00733916 /* 06.txt in Resources */,
 				ED4601402EE887AD00733916 /* 01.txt in Resources */,
 				ED4601412EE887AD00733916 /* 02.txt in Resources */,
