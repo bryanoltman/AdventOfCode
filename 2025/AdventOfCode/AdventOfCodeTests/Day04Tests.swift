@@ -21,6 +21,6 @@ struct Day04Tests {
   }
 
   @Test func part2() async throws {
-    #expect(Day04.part2(Day04.parseInput(input)) == 0)
+    #expect(Day04.part2(Day04.parseInput(input)) == 43)
   }
 }

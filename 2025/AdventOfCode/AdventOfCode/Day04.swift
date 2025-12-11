@@ -49,6 +49,34 @@ public class Day04 {
   }
 
   public static func part2(_ input: [[String]]) -> Int {
-    return 0
+    var sum = 0
+    var hasChanged = false
+    var currentMap = input
+    repeat {
+      hasChanged = false
+      var nextMap: [[String]] = []
+      for y in 0..<currentMap.count {
+        var nextRow = [String]()
+        for x in 0..<currentMap[y].count {
+          guard currentMap[y][x] == "@" else {
+            nextRow.append(".")
+            continue
+          }
+          let point = Point(x: x, y: y)
+          let neighbors = neighborPoints(map: currentMap, point: point).map { currentMap[$0.y][$0.x] }
+          if neighbors.count(where: { $0 == "@" }) < 4 {
+            nextRow.append(".")
+            sum += 1
+            hasChanged = true
+          } else {
+            nextRow.append("@")
+          }
+        }
+        nextMap.append(nextRow)
+      }
+
+      currentMap = nextMap
+    } while hasChanged
+    return sum
   }
 }
