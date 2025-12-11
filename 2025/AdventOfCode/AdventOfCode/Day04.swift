@@ -63,12 +63,14 @@ public class Day04 {
             continue
           }
           let point = Point(x: x, y: y)
-          let neighbors = neighborPoints(map: currentMap, point: point).map { currentMap[$0.y][$0.x] }
+          let neighbors = neighborPoints(map: currentMap, point: point)
+            .map { currentMap[$0.y][$0.x] }
           if neighbors.count(where: { $0 == "@" }) < 4 {
             nextRow.append(".")
             sum += 1
             hasChanged = true
-          } else {
+          }
+          else {
             nextRow.append("@")
           }
         }
